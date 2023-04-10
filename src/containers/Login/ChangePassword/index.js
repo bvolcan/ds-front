@@ -1,11 +1,12 @@
 import './style.css'
 import { Button, TextField } from '@material-ui/core'
-
+import Logo from '../../../images/logo.svg'
 const ChangePassword = () => {
 	return (
 		<div className='container'>
 			<header>
-				<h1>Logo</h1>
+				<img src={Logo}></img>
+				<span className='profile-pic'>Profile Pic</span>
 			</header>
 			<div className='body'>
 				<div className='login-form'>
@@ -45,7 +46,11 @@ const ChangePassword = () => {
 					</div>
 					<Button
 						variant='contained'
-						style={{ backgroundColor: '#00BBAAFF', color: 'white' }}
+						style={{
+							backgroundColor: '#00BBAAFF',
+							color: 'white',
+							marginBottom: 20
+						}}
 						height='44px'
 						width='483px'
 					>
