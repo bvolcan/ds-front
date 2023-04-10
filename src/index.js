@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Routes from './routes'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
+ReactDOM.render(
 	<React.StrictMode>
 		<Routes />
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById('root')
 )
