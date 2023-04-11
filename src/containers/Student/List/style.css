@@ -25,5 +25,8 @@
 	margin-bottom: 0.5rem;
 }
 
-.submissions-table {
+.table-header-text h3 {
+	font-size: 32px;
+	line-height: 48px;
+	color: #171a1fff;
 }

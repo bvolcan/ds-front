@@ -35,9 +35,9 @@ function createData(titulo, autor, orientador, status, proposta, revisao) {
 
 const rows = [
 	createData(
-		'Titulo da proposta',
-		'Autor da proposta',
-		'Orientador da proposta',
+		'Titulo da proposta1',
+		'Autor da proposta1',
+		'Orientador da proposta1',
 		'Pendente',
 		'Ver',
 		'Ver'
@@ -55,6 +55,46 @@ const rows = [
 		'Autor da proposta3',
 		'Orientador da proposta3',
 		'Finalizada',
+		'Ver',
+		'Ver'
+	),
+	createData(
+		'Titulo da proposta4',
+		'Autor da proposta4',
+		'Orientador da proposta4',
+		'Reprovada',
+		'Ver',
+		'Ver'
+	),
+	createData(
+		'Titulo da proposta5',
+		'Autor da proposta5',
+		'Orientador da proposta5',
+		'Reprovada',
+		'Ver',
+		'Ver'
+	),
+	createData(
+		'Titulo da proposta6',
+		'Autor da proposta6',
+		'Orientador da proposta6',
+		'Finalizada',
+		'Ver',
+		'Ver'
+	),
+	createData(
+		'Titulo da proposta7',
+		'Autor da proposta7',
+		'Orientador da proposta7',
+		'Reprovada',
+		'Ver',
+		'Ver'
+	),
+	createData(
+		'Titulo da proposta8',
+		'Autor da proposta8',
+		'Orientador da proposta8',
+		'Reprovada',
 		'Ver',
 		'Ver'
 	)
@@ -113,7 +153,7 @@ const headCells = [
 	},
 	{
 		id: 'status',
-		numeric: true,
+		numeric: false,
 		disablePadding: false,
 		label: 'Status'
 	},
@@ -381,7 +421,7 @@ export default function EnhancedTable() {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
-				<EnhancedTableToolbar numSelected={selected.length} />
+				{/* <EnhancedTableToolbar numSelected={selected.length} /> */}
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
@@ -426,15 +466,15 @@ export default function EnhancedTable() {
 													component='th'
 													id={labelId}
 													scope='row'
-													padding='none'
+													padding='normal'
 												>
 													{row.titulo}
 												</TableCell>
-												<TableCell align='right'>{row.autor}</TableCell>
-												<TableCell align='right'>{row.orientador}</TableCell>
-												<TableCell align='right'>{row.status}</TableCell>
-												<TableCell align='right'>{row.proposta}</TableCell>
-												<TableCell align='right'>{row.revisao}</TableCell>
+												<TableCell align='left'>{row.autor}</TableCell>
+												<TableCell align='left'>{row.orientador}</TableCell>
+												<TableCell align='left'>{row.status}</TableCell>
+												<TableCell align='left'>{row.proposta}</TableCell>
+												<TableCell align='left'>{row.revisao}</TableCell>
 											</TableRow>
 										)
 								  })
@@ -459,11 +499,12 @@ export default function EnhancedTable() {
 					page={page}
 					onPageChange={handleChangePage}
 					onRowsPerPageChange={handleChangeRowsPerPage}
+					className='table-pagination'
 				/>
 			</Paper>
 			<FormControlLabel
 				control={<Switch checked={dense} onChange={handleChangeDense} />}
-				label='Dense padding'
+				label='Lista densa'
 			/>
 		</Box>
 	)

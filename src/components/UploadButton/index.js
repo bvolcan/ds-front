@@ -11,10 +11,10 @@ export default function UploadButton() {
 				Nova Submissão
 				<input hidden accept='pdf/*' multiple type='file' />
 			</Button>
-			<IconButton color='primary' aria-label='upload file' component='label'>
+			{/* <IconButton color='primary' aria-label='upload file' component='label'>
 				<input hidden accept='pdf/*' type='file' />
 				<PictureAsPdfIcon />
-			</IconButton>
+			</IconButton> */}
 		</Stack>
 	)
 }
