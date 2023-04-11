@@ -1,0 +1,25 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	width: 100vw;
+	padding-left: 2rem;
+}
+
+header img {
+	width: 6rem;
+	height: 2rem;
+	margin: 1.3rem 2rem;
+}
+
+header .profile-pic {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: grey;
+	width: 3.3rem;
+	height: 3.3rem;
+	border-radius: 100%;
+	margin: 2.25rem;
+	color: lightcyan;
+	text-align: center;
+}
