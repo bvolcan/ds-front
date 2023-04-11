@@ -1,13 +1,11 @@
 import './style.css'
 import { Button, TextField } from '@material-ui/core'
-import Logo from '../../../images/logo.svg'
+import Header from '../../../components/Header'
+
 const ChangePassword = () => {
 	return (
 		<div className='container'>
-			<header>
-				<img src={Logo}></img>
-				<span className='profile-pic'>Profile Pic</span>
-			</header>
+			<Header></Header>
 			<div className='body'>
 				<div className='login-form'>
 					<h1>Trocar Senha</h1>
