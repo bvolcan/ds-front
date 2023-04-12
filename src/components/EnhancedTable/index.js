@@ -22,83 +22,85 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import './style.css'
-function createData(titulo, autor, orientador, status, proposta, revisao) {
-	return {
-		titulo,
-		autor,
-		orientador,
-		status,
-		proposta,
-		revisao
-	}
+
+function createData(data) {
+	let titulo = data.title
+	let turma = data.class.name
+	let orientador = data.advisorEmail
+	let status = 'Pendente'
+
+	return { titulo, turma, orientador, status }
 }
 
-const rows = [
-	createData(
-		'Titulo da proposta1',
-		'Autor da proposta1',
-		'Orientador da proposta1',
-		'Pendente',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta2',
-		'Autor da proposta2',
-		'Orientador da proposta2',
-		'Reprovada',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta3',
-		'Autor da proposta3',
-		'Orientador da proposta3',
-		'Finalizada',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta4',
-		'Autor da proposta4',
-		'Orientador da proposta4',
-		'Reprovada',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta5',
-		'Autor da proposta5',
-		'Orientador da proposta5',
-		'Reprovada',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta6',
-		'Autor da proposta6',
-		'Orientador da proposta6',
-		'Finalizada',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta7',
-		'Autor da proposta7',
-		'Orientador da proposta7',
-		'Reprovada',
-		'Ver',
-		'Ver'
-	),
-	createData(
-		'Titulo da proposta8',
-		'Autor da proposta8',
-		'Orientador da proposta8',
-		'Reprovada',
-		'Ver',
-		'Ver'
-	)
-]
+// let rows = []
+// let data = []
+// let rows = data?.data.map((user) => createData(user))
+// const rows2 = [
+// 	createData(
+// 		'Titulo da proposta1',
+// 		'turma da proposta1',
+// 		'Orientador da proposta1',
+// 		'Pendente',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta2',
+// 		'turma da proposta2',
+// 		'Orientador da proposta2',
+// 		'Reprovada',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta3',
+// 		'turma da proposta3',
+// 		'Orientador da proposta3',
+// 		'Finalizada',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta4',
+// 		'turma da proposta4',
+// 		'Orientador da proposta4',
+// 		'Reprovada',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta5',
+// 		'turma da proposta5',
+// 		'Orientador da proposta5',
+// 		'Reprovada',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta6',
+// 		'turma da proposta6',
+// 		'Orientador da proposta6',
+// 		'Finalizada',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta7',
+// 		'turma da proposta7',
+// 		'Orientador da proposta7',
+// 		'Reprovada',
+// 		'Ver',
+// 		'Ver'
+// 	),
+// 	createData(
+// 		'Titulo da proposta8',
+// 		'turma da proposta8',
+// 		'Orientador da proposta8',
+// 		'Reprovada',
+// 		'Ver',
+// 		'Ver'
+// 	)
+// ]
 
 function descendingComparator(a, b, orderBy) {
 	if (b[orderBy] < a[orderBy]) {
@@ -140,10 +142,10 @@ const headCells = [
 		label: 'Título'
 	},
 	{
-		id: 'autor',
+		id: 'turma',
 		numeric: false,
 		disablePadding: false,
-		label: 'Autor'
+		label: 'Turma'
 	},
 	{
 		id: 'orientador',
@@ -295,7 +297,7 @@ EnhancedTableToolbar.propTypes = {
 	numSelected: PropTypes.number.isRequired
 }
 
-export default function EnhancedTable() {
+const EnhancedTable = (data) => {
 	const [order, setOrder] = React.useState(DEFAULT_ORDER)
 	const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY)
 	const [selected, setSelected] = React.useState([])
@@ -304,6 +306,12 @@ export default function EnhancedTable() {
 	const [visibleRows, setVisibleRows] = React.useState(null)
 	const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE)
 	const [paddingHeight, setPaddingHeight] = React.useState(0)
+	const [rows, setRows] = React.useState(
+		data?.data.map((proposal, i) => createData(proposal))
+	)
+
+	console.log(data)
+	console.log(rows)
 
 	React.useEffect(() => {
 		let rowsOnMount = stableSort(
@@ -470,11 +478,15 @@ export default function EnhancedTable() {
 												>
 													{row.titulo}
 												</TableCell>
-												<TableCell align='left'>{row.autor}</TableCell>
+												<TableCell align='left'>{row.turma}</TableCell>
 												<TableCell align='left'>{row.orientador}</TableCell>
 												<TableCell align='left'>{row.status}</TableCell>
-												<TableCell align='left'>{row.proposta}</TableCell>
-												<TableCell align='left'>{row.revisao}</TableCell>
+												<TableCell align='left'>
+													<a href='verProposta'>Ver</a>
+												</TableCell>
+												<TableCell align='left'>
+													<a href='verRevisao'>Ver</a>
+												</TableCell>
 											</TableRow>
 										)
 								  })
@@ -509,3 +521,5 @@ export default function EnhancedTable() {
 		</Box>
 	)
 }
+
+export default EnhancedTable
