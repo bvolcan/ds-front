@@ -1,0 +1,85 @@
+.submission-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 0 10.6vw 0 8.3vw;
+}
+
+.submission-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 16px 0 28px;
+    border: #BDC1CAFF 1px solid;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.submission-form span {
+    font-family: 'Mulish', sans-serif;
+}
+
+.submission-form h4 {
+    font-family: 'Mulish', sans-serif;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-header h3 {
+    font-size: 35px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-header h5 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 20px; 
+    color: #1E2128FF;
+}
+
+.advisors {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5.5rem;
+    background-color: #F3F4F6FF;
+    border-radius: 8px;
+    border: #BDC1CAFF 2px dotted;
+}
+
+.dropzone span {
+    color: #6F7787FF;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 15px 0 15px 0;
+}
+
+header .profile-pic {
+    margin: 1rem;
+}
