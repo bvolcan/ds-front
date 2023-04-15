@@ -1,0 +1,33 @@
+.view-revision {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.view-revision-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+.view-revision-title h1 {
+	font-size: 32px;
+	line-height: 48px;
+	color: #171a1fff;
+}
+
+.view-revision-title h3 {
+	font-size: 20px;
+	line-height: 30px;
+	color: #171a1fff;
+	font-weight: normal;
+}
+
+.view-revision-box {
+	overflow-y: scroll;
+	height: 60vh;
+	width: 75%;
+}
