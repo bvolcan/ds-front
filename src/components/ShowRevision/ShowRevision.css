@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 2rem;
+	margin: 0 1.5rem 2rem;
 }
 
 .show-revision h2 {
@@ -22,7 +22,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border: 8px ridge gray;
+	border: 1rem solid lightgray;
 }
 
 .show-revision-content h3 {

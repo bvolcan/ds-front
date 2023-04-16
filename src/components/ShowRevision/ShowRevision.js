@@ -4,7 +4,6 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
@@ -30,31 +29,40 @@ const ShowRevision = ({ data }) => {
 										scope='row'
 										align='left'
 										width='50%'
+										style={{ fontWeight: 600 }}
 									>
 										Apresentação e consistência
 									</TableCell>
 									<TableCell>{data.apresentacao}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Relevância e contribuição</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Relevância e contribuição
+									</TableCell>
 									<TableCell>{data.relevancia}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Metodologia</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>Metodologia</TableCell>
 									<TableCell>{data.metodologia}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Adequação ao curso</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Adequação ao curso
+									</TableCell>
 									<TableCell>
 										{data.foiAdequado ? '1 - Adequado' : '2 - Inadequado'}
 									</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Plano de trabalho a ser desenvolvido</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Plano de trabalho a ser desenvolvido
+									</TableCell>
 									<TableCell>{data.planoDeTrabalho}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Avaliação geral</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Avaliação geral
+									</TableCell>
 									<TableCell>
 										{data.foiAprovado
 											? '1 - Proposta Aprovada'
@@ -79,21 +87,28 @@ const ShowRevision = ({ data }) => {
 										scope='row'
 										align='left'
 										width='50%'
+										style={{ fontWeight: 600 }}
 									>
 										Resumo da proposta
 									</TableCell>
 									<TableCell>{data.resumo}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Pontos fortes da proposta</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Pontos fortes da proposta
+									</TableCell>
 									<TableCell>{data.pontosFortes}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>´Pontos fracos da proposta</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Pontos fracos da proposta
+									</TableCell>
 									<TableCell>{data.pontosFracos}</TableCell>
 								</TableRow>
 								<TableRow>
-									<TableCell>Detalhamento da avaliação</TableCell>
+									<TableCell style={{ fontWeight: 600 }}>
+										Detalhamento da avaliação
+									</TableCell>
 									<TableCell>{data.detalhamento}</TableCell>
 								</TableRow>
 							</TableBody>

@@ -30,7 +30,23 @@
 
 .view-revision-box {
 	overflow-y: scroll;
-	height: 60vh;
-	width: 75%;
+	height: 70vh;
+	width: fit-content;
 	margin-top: 2rem;
+}
+
+.view-revision-box::-webkit-scrollbar {
+	width: 20px;
+}
+
+/* Track */
+.view-revision-box::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px lightgray;
+	border-radius: 10px;
+}
+
+/* Handle */
+.view-revision-box::-webkit-scrollbar-thumb {
+	background: lightgray;
+	border-radius: 10px;
 }
