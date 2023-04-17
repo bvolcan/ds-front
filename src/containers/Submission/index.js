@@ -30,8 +30,9 @@ const Submission = () => {
 	}
 
 	const files = acceptedFiles.map((file) => (
-		<p key={file.path}>
+		<p className='file uploaded' key={file.path}>
 			{file.path} - {file.size} bytes
+			<span>Clique aqui para enviar um novo arquivo</span>
 		</p>
 	))
 
