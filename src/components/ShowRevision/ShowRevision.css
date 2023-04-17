@@ -40,3 +40,14 @@
 	line-height: 22px;
 	color: #171a1fff;
 }
+
+.show-revision-content .reviewers .reviewers-title {
+	display: flex;
+	flex-direction: row;
+}
+
+.show-revision-content .reviewers .reviewers-title h3 {
+	width: 50%;
+	text-align: start;
+	padding-left: 1rem;
+}
