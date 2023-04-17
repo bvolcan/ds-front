@@ -18,7 +18,7 @@ const ShowRevision = ({ data }) => {
 				<div className='objective-criteria'>
 					<h3>Critérios Objetivos</h3>
 					<TableContainer component={Paper}>
-						<Table sx={{ minWidth: 1200 }} aria-label='criterios objetivos'>
+						<Table sx={{ width: 1200 }} aria-label='criterios objetivos'>
 							<TableBody>
 								<TableRow
 									key='Apresentacao e consistencia'
@@ -76,7 +76,7 @@ const ShowRevision = ({ data }) => {
 				<div className='dissertative-criteria'>
 					<h3>Critérios Dissertativos</h3>
 					<TableContainer component={Paper}>
-						<Table sx={{ minWidth: 1200 }} aria-label='criterios dissertativos'>
+						<Table sx={{ width: 1200 }} aria-label='criterios dissertativos'>
 							<TableBody>
 								<TableRow
 									key='Resumo da proposta'

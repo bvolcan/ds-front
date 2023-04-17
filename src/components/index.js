@@ -1,2 +1,2 @@
 export * from './Header'
-export * from './ShowRevision'
+export { default as ShowRevision } from './ShowRevision/ShowRevision'
