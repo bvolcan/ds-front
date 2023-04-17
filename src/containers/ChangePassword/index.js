@@ -1,6 +1,7 @@
 import './style.css'
 import { Button, TextField } from '@material-ui/core'
-import Logo from '../../../images/logo.svg'
+import Logo from '../../images/logo.svg'
+
 const ChangePassword = () => {
 	return (
 		<div className='container'>
