@@ -16,7 +16,7 @@ const ShowRevision = ({ isRevision, data }) => {
 			{isRevision ? (
 				<div className='show-revision'>
 					<div className='show-revision-title'>
-						<h2>Revisão - Professor {data.numeroServidorRevisor}</h2>
+						<h2>Revisão - Professor {data.reviewer}</h2>
 					</div>
 					<div className='show-revision-content'>
 						<div className='objective-criteria'>
