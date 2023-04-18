@@ -32,76 +32,6 @@ function createData(data) {
 	return { titulo, turma, orientador, status }
 }
 
-// let rows = []
-// let data = []
-// let rows = data?.data.map((user) => createData(user))
-// const rows2 = [
-// 	createData(
-// 		'Titulo da proposta1',
-// 		'turma da proposta1',
-// 		'Orientador da proposta1',
-// 		'Pendente',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta2',
-// 		'turma da proposta2',
-// 		'Orientador da proposta2',
-// 		'Reprovada',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta3',
-// 		'turma da proposta3',
-// 		'Orientador da proposta3',
-// 		'Finalizada',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta4',
-// 		'turma da proposta4',
-// 		'Orientador da proposta4',
-// 		'Reprovada',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta5',
-// 		'turma da proposta5',
-// 		'Orientador da proposta5',
-// 		'Reprovada',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta6',
-// 		'turma da proposta6',
-// 		'Orientador da proposta6',
-// 		'Finalizada',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta7',
-// 		'turma da proposta7',
-// 		'Orientador da proposta7',
-// 		'Reprovada',
-// 		'Ver',
-// 		'Ver'
-// 	),
-// 	createData(
-// 		'Titulo da proposta8',
-// 		'turma da proposta8',
-// 		'Orientador da proposta8',
-// 		'Reprovada',
-// 		'Ver',
-// 		'Ver'
-// 	)
-// ]
-
 function descendingComparator(a, b, orderBy) {
 	if (b[orderBy] < a[orderBy]) {
 		return -1
@@ -118,10 +48,6 @@ function getComparator(order, orderBy) {
 		: (a, b) => -descendingComparator(a, b, orderBy)
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
 	const stabilizedThis = array.map((el, index) => [el, index])
 	stabilizedThis.sort((a, b) => {
