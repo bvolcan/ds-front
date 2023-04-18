@@ -5,10 +5,6 @@ import Logo from '../../images/logo.svg'
 const ChangePassword = () => {
 	return (
 		<div className='container'>
-			<header>
-				<img src={Logo}></img>
-				<span className='profile-pic'>Profile Pic</span>
-			</header>
 			<div className='body'>
 				<div className='login-form'>
 					<h1>Trocar Senha</h1>
