@@ -106,14 +106,7 @@ const DEFAULT_ORDER_BY = 'status'
 const DEFAULT_ROWS_PER_PAGE = 5
 
 function EnhancedTableHead(props) {
-	const {
-		onSelectAllClick,
-		order,
-		orderBy,
-		numSelected,
-		rowCount,
-		onRequestSort
-	} = props
+	const { order, orderBy, onRequestSort } = props
 	const createSortHandler = (newOrderBy) => (event) => {
 		onRequestSort(event, newOrderBy)
 	}
@@ -121,23 +114,13 @@ function EnhancedTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow>
-				<TableCell padding='checkbox'>
-					{/* <Checkbox
-						color='primary'
-						indeterminate={numSelected > 0 && numSelected < rowCount}
-						checked={rowCount > 0 && numSelected === rowCount}
-						onChange={onSelectAllClick}
-						inputProps={{
-							'aria-label': 'select all desserts'
-						}}
-					/> */}
-				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
+						// sx={{ pl: 4 }}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -357,7 +340,6 @@ const EnhancedTable = (data) => {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
-				{/* <EnhancedTableToolbar numSelected={selected.length} /> */}
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
@@ -381,28 +363,19 @@ const EnhancedTable = (data) => {
 										return (
 											<TableRow
 												hover
-												onClick={(event) => handleClick(event, row.titulo)}
 												role='checkbox'
 												aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.titulo}
 												selected={isItemSelected}
-												sx={{ cursor: 'pointer' }}
 											>
-												<TableCell padding='checkbox'>
-													{/* <Checkbox
-														color='primary'
-														checked={isItemSelected}
-														inputProps={{
-															'aria-labelledby': labelId
-														}}
-													/> */}
-												</TableCell>
 												<TableCell
 													component='th'
 													id={labelId}
 													scope='row'
 													padding='normal'
+													// sx={{ pl: 4 }}
+													align='left'
 												>
 													{row.titulo}
 												</TableCell>
@@ -410,10 +383,9 @@ const EnhancedTable = (data) => {
 												<TableCell align='left'>{row.orientador}</TableCell>
 												<TableCell align='left'>{row.status}</TableCell>
 												<TableCell align='left'>
-													<a href='verProposta'>Ver</a>
+													<Link to={`viewproposal/${row.id}`}>Ver</Link>
 												</TableCell>
 												<TableCell align='left'>
-													{/* <a href={`viewrevision/${row.id}`}>Ver</a> */}
 													<Link to={`viewrevision/${row.id}`}>Ver</Link>
 												</TableCell>
 											</TableRow>

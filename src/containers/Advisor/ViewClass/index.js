@@ -1,11 +1,9 @@
 import React from 'react'
 import './style.css'
 import EnhancedTable from '../../../components/EnhancedTable'
-import Header from '../../../components/Header/Header'
+import { Header } from '../../../components'
 import UploadButton from '../../../components/UploadButton'
 
-let userName = 'Aluno Teste'
-let className = 'Turma Teste'
 let studentsData = [
 	{
 		userEmail: 'lwtavares@inf.ufpel.edu.br',

@@ -1,10 +1,9 @@
 import React from 'react'
 import './style.css'
 import EnhancedTable from '../../../components/EnhancedTable'
-import Logo from '../../../images/logo.svg'
 import UploadButton from '../../../components/UploadButton'
+import { Header } from '../../../components'
 
-let userName = 'Aluno Teste'
 let className = 'Turma Teste'
 let studentsData = [
 	{
@@ -86,10 +85,7 @@ let studentsData = [
 const StudentList = () => {
 	return (
 		<div className='container'>
-			<header>
-				<img src={Logo}></img>
-				<span className='profile-pic'>Profile Pic</span>
-			</header>
+			<Header />
 			<div className='title'>
 				<h2>
 					Olá {studentsData[0].userEmail}, você está matriculado na turma{' '}
