@@ -1,0 +1,80 @@
+.view-revision {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.view-revision-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2rem;
+	position: fixed;
+	top: 1.5rem;
+}
+
+.view-revision-title h1 {
+	font-size: 32px;
+	line-height: 48px;
+	color: #171a1fff;
+}
+
+.view-revision-title h3 {
+	font-size: 20px;
+	line-height: 30px;
+	color: #171a1fff;
+	font-weight: normal;
+}
+
+.view-revision-reviewers h2 {
+	margin-bottom: 1rem;
+	font-size: 24px;
+	line-height: 36px;
+	color: #171a1fff;
+}
+
+.view-revision-box {
+	overflow-y: scroll;
+	height: 70vh;
+	width: fit-content;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.view-revision-box::-webkit-scrollbar {
+	width: 20px;
+}
+
+.view-revision-box::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px lightgray;
+	border-radius: 10px;
+}
+
+.view-revision-box::-webkit-scrollbar-thumb {
+	background: lightgray;
+	border-radius: 10px;
+}
+
+.view-revision .back-button .MuiButton-root {
+	font-size: 18px;
+	line-height: 28px;
+	color: #00bbaaff;
+	background: #e4fffdff;
+	text-transform: capitalize;
+	font-family: 'Poppins', sans-serif;
+	border: none;
+	border-radius: 6px;
+	padding: 0.5rem 4rem;
+}
+
+.view-revision .back-button .MuiButton-root:hover {
+	color: #00bbaaff;
+	background: #9afff7ff;
+}
+
+.view-revision .back-button .MuiButton-root:hover:active {
+	color: #00bbaaff;
+	background: #00e1cfff;
+}

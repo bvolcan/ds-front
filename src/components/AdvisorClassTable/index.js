@@ -22,16 +22,14 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import './style.css'
-import { Link } from 'react-router-dom'
 
 function createData(data) {
 	let titulo = data.title
 	let turma = data.class.name
 	let orientador = data.advisorEmail
 	let status = 'Pendente'
-	let id = data.id
 
-	return { titulo, turma, orientador, status, id }
+	return { titulo, turma, orientador, status }
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -105,7 +103,7 @@ const DEFAULT_ORDER = 'asc'
 const DEFAULT_ORDER_BY = 'status'
 const DEFAULT_ROWS_PER_PAGE = 5
 
-function EnhancedTableHead(props) {
+function AdvisorClassTableHead(props) {
 	const {
 		onSelectAllClick,
 		order,
@@ -158,7 +156,7 @@ function EnhancedTableHead(props) {
 	)
 }
 
-EnhancedTableHead.propTypes = {
+AdvisorClassTableHead.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 	onRequestSort: PropTypes.func.isRequired,
 	onSelectAllClick: PropTypes.func.isRequired,
@@ -167,7 +165,7 @@ EnhancedTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired
 }
 
-function EnhancedTableToolbar(props) {
+function AdvisorClassTableToolbar(props) {
 	const { numSelected } = props
 
 	return (
@@ -221,11 +219,11 @@ function EnhancedTableToolbar(props) {
 	)
 }
 
-EnhancedTableToolbar.propTypes = {
+AdvisorClassTableToolbar.propTypes = {
 	numSelected: PropTypes.number.isRequired
 }
 
-const EnhancedTable = (data) => {
+const AdvisorClassTable = (data) => {
 	const [order, setOrder] = React.useState(DEFAULT_ORDER)
 	const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY)
 	const [selected, setSelected] = React.useState([])
@@ -357,14 +355,14 @@ const EnhancedTable = (data) => {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
-				{/* <EnhancedTableToolbar numSelected={selected.length} /> */}
+				{/* <AdvisorClassTableToolbar numSelected={selected.length} /> */}
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size={dense ? 'small' : 'medium'}
 					>
-						<EnhancedTableHead
+						<AdvisorClassTableHead
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
@@ -413,8 +411,7 @@ const EnhancedTable = (data) => {
 													<a href='verProposta'>Ver</a>
 												</TableCell>
 												<TableCell align='left'>
-													{/* <a href={`viewrevision/${row.id}`}>Ver</a> */}
-													<Link to={`viewrevision/${row.id}`}>Ver</Link>
+													<a href='verRevisao'>Ver</a>
 												</TableCell>
 											</TableRow>
 										)
@@ -451,4 +448,4 @@ const EnhancedTable = (data) => {
 	)
 }
 
-export default EnhancedTable
+export default AdvisorClassTable
