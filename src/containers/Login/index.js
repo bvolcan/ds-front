@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import './style.css'
 import { useAuth } from '../../context/AuthContext'
 import { Button, TextField } from '@material-ui/core'
+import Logo from '../../images/logo.svg'
 
 const Login = () => {
 	const { handleSubmit } = useForm()
@@ -38,7 +39,7 @@ const Login = () => {
 	return (
 		<div className='container'>
 			<header>
-				<h1>Logo</h1>
+				<img src={Logo} alt=''></img>
 			</header>
 			<div className='body-container'>
 				<form className='login-form' onSubmit={handleSubmit(onSubmit)}>
