@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 import './style.css'
+import { useAuth } from '../../context/AuthContext'
 import { Button, TextField } from '@material-ui/core'
 
 const Login = () => {
 	const { handleSubmit } = useForm()
+	const { login } = useAuth()
+	const history = useHistory()
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const onSubmit = (e) => {
-		console.log({ email: email, password: password })
+	const onSubmit = async () => {
+		try {
+			await login(email, password)
+		} catch (error) {
+			console.log('Login error')
+		} finally {
+			if (localStorage.getItem('isProfessor') === 'true') {
+				history.push('/professor')
+			} else {
+				history.push('/aluno')
+			}
+		}
 	}
 
 	const onEmailChange = (e) => {
