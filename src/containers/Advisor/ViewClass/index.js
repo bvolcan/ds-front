@@ -1,10 +1,9 @@
 import React from 'react'
 import './style.css'
 import EnhancedTable from '../../../components/EnhancedTable'
-import UploadButton from '../../../components/UploadButton'
 import { Header } from '../../../components'
+import UploadButton from '../../../components/UploadButton'
 
-let className = 'Turma Teste'
 let studentsData = [
 	{
 		userEmail: 'lwtavares@inf.ufpel.edu.br',
@@ -81,21 +80,17 @@ let studentsData = [
 		]
 	}
 ]
+let turma = 'TCC1 2022/2'
 
-const StudentList = () => {
+const ViewClass = () => {
 	return (
 		<div className='container'>
 			<Header />
-			<div className='title'>
-				<h2>
-					Olá {studentsData[0].userEmail}, você está matriculado na turma{' '}
-					<b>{className}!</b>
-				</h2>
-			</div>
+
 			<div className='table'>
 				<div className='table-header'>
 					<div className='table-header-text'>
-						<h3>Suas submissões</h3>
+						<h3>Propostas da turma {turma}</h3>
 					</div>
 					<div className='table-header-button'>
 						<UploadButton />
@@ -109,4 +104,4 @@ const StudentList = () => {
 	)
 }
 
-export default StudentList
+export default ViewClass

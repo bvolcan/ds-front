@@ -22,16 +22,14 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import './style.css'
-import { Link } from 'react-router-dom'
 
 function createData(data) {
 	let titulo = data.title
 	let turma = data.class.name
 	let orientador = data.advisorEmail
 	let status = 'Pendente'
-	let id = data.id
 
-	return { titulo, turma, orientador, status, id }
+	return { titulo, turma, orientador, status }
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -105,8 +103,15 @@ const DEFAULT_ORDER = 'asc'
 const DEFAULT_ORDER_BY = 'status'
 const DEFAULT_ROWS_PER_PAGE = 5
 
-function EnhancedTableHead(props) {
-	const { order, orderBy, onRequestSort } = props
+function AdvisorClassTableHead(props) {
+	const {
+		onSelectAllClick,
+		order,
+		orderBy,
+		numSelected,
+		rowCount,
+		onRequestSort
+	} = props
 	const createSortHandler = (newOrderBy) => (event) => {
 		onRequestSort(event, newOrderBy)
 	}
@@ -114,13 +119,23 @@ function EnhancedTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow>
+				<TableCell padding='checkbox'>
+					{/* <Checkbox
+						color='primary'
+						indeterminate={numSelected > 0 && numSelected < rowCount}
+						checked={rowCount > 0 && numSelected === rowCount}
+						onChange={onSelectAllClick}
+						inputProps={{
+							'aria-label': 'select all desserts'
+						}}
+					/> */}
+				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
-						// sx={{ pl: 4 }}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -141,7 +156,7 @@ function EnhancedTableHead(props) {
 	)
 }
 
-EnhancedTableHead.propTypes = {
+AdvisorClassTableHead.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 	onRequestSort: PropTypes.func.isRequired,
 	onSelectAllClick: PropTypes.func.isRequired,
@@ -150,7 +165,7 @@ EnhancedTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired
 }
 
-function EnhancedTableToolbar(props) {
+function AdvisorClassTableToolbar(props) {
 	const { numSelected } = props
 
 	return (
@@ -204,11 +219,11 @@ function EnhancedTableToolbar(props) {
 	)
 }
 
-EnhancedTableToolbar.propTypes = {
+AdvisorClassTableToolbar.propTypes = {
 	numSelected: PropTypes.number.isRequired
 }
 
-const EnhancedTable = (data) => {
+const AdvisorClassTable = (data) => {
 	const [order, setOrder] = React.useState(DEFAULT_ORDER)
 	const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY)
 	const [selected, setSelected] = React.useState([])
@@ -340,13 +355,14 @@ const EnhancedTable = (data) => {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
+				{/* <AdvisorClassTableToolbar numSelected={selected.length} /> */}
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size={dense ? 'small' : 'medium'}
 					>
-						<EnhancedTableHead
+						<AdvisorClassTableHead
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
@@ -363,19 +379,28 @@ const EnhancedTable = (data) => {
 										return (
 											<TableRow
 												hover
+												onClick={(event) => handleClick(event, row.titulo)}
 												role='checkbox'
 												aria-checked={isItemSelected}
 												tabIndex={-1}
 												key={row.titulo}
 												selected={isItemSelected}
+												sx={{ cursor: 'pointer' }}
 											>
+												<TableCell padding='checkbox'>
+													{/* <Checkbox
+														color='primary'
+														checked={isItemSelected}
+														inputProps={{
+															'aria-labelledby': labelId
+														}}
+													/> */}
+												</TableCell>
 												<TableCell
 													component='th'
 													id={labelId}
 													scope='row'
 													padding='normal'
-													// sx={{ pl: 4 }}
-													align='left'
 												>
 													{row.titulo}
 												</TableCell>
@@ -383,10 +408,10 @@ const EnhancedTable = (data) => {
 												<TableCell align='left'>{row.orientador}</TableCell>
 												<TableCell align='left'>{row.status}</TableCell>
 												<TableCell align='left'>
-													<Link to={`viewproposal/${row.id}`}>Ver</Link>
+													<a href='verProposta'>Ver</a>
 												</TableCell>
 												<TableCell align='left'>
-													<Link to={`viewrevision/${row.id}`}>Ver</Link>
+													<a href='verRevisao'>Ver</a>
 												</TableCell>
 											</TableRow>
 										)
@@ -423,4 +448,4 @@ const EnhancedTable = (data) => {
 	)
 }
 
-export default EnhancedTable
+export default AdvisorClassTable
