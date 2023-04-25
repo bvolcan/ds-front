@@ -19,15 +19,7 @@ const Routes = () => {
 					)}
 					path='/professor'
 				/>
-				<Route
-					component={() => (
-						<div>
-							<h1>Dashboard Aluno</h1>
-						</div>
-					)}
-					path='/aluno'
-				/>
-				<Route component={StudentList} path='/studentlist' />
+				<Route component={StudentList} path='/aluno' />
 				<Route component={ViewRevision} path='/viewrevision' />
 				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />

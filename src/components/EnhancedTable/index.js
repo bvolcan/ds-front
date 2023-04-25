@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom'
 function createData(data) {
 	let titulo = data.title
 	let turma = data.class.name
-	let orientador = data.advisorEmail
+	let orientador = data.professor.user.name
 	let status = 'Pendente'
 	let id = data.id
 
