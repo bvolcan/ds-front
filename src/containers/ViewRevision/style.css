@@ -57,7 +57,7 @@
 	border-radius: 10px;
 }
 
-.view-revision .back-button .MuiButton-root {
+.view-revision .back-button a {
 	font-size: 18px;
 	line-height: 28px;
 	color: #00bbaaff;
@@ -67,14 +67,24 @@
 	border: none;
 	border-radius: 6px;
 	padding: 0.5rem 4rem;
+	text-decoration: none;
 }
 
-.view-revision .back-button .MuiButton-root:hover {
+.view-revision .back-button a:hover {
 	color: #00bbaaff;
 	background: #9afff7ff;
 }
 
-.view-revision .back-button .MuiButton-root:hover:active {
+.view-revision .back-button a:hover:active {
 	color: #00bbaaff;
 	background: #00e1cfff;
+}
+
+.view-revision-empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 70vh;
+	width: 100%;
 }

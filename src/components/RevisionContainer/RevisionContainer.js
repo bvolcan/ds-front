@@ -1,5 +1,5 @@
 import React from 'react'
-import './ShowRevision.css'
+import './RevisionContainer.css'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -8,15 +8,13 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { format } from 'date-fns'
 
-const ShowRevision = ({ isRevision, data }) => {
-	// console.log(data)
-
+const RevisionContainer = ({ isRevision, data }) => {
 	return (
 		<>
 			{isRevision ? (
 				<div className='show-revision'>
 					<div className='show-revision-title'>
-						<h2>Revisão - Professor {data.reviewer}</h2>
+						<h2>Revisão - Professor {data.reviewerName}</h2>
 					</div>
 					<div className='show-revision-content'>
 						<div className='objective-criteria'>
@@ -150,7 +148,7 @@ const ShowRevision = ({ isRevision, data }) => {
 													width='50%'
 													style={{ fontWeight: 600 }}
 												>
-													{revisao.reviewer}
+													{revisao.reviewerName}
 												</TableCell>
 												<TableCell>
 													{format(new Date(revisao.reviewedOn), 'dd/MM/yyyy')}
@@ -168,4 +166,4 @@ const ShowRevision = ({ isRevision, data }) => {
 	)
 }
 
-export default ShowRevision
+export default RevisionContainer
