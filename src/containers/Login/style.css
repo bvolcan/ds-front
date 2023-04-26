@@ -1,9 +1,3 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 .container {
     display: flex;
     flex-direction: column;
@@ -11,13 +5,7 @@
     height: 100vh;
 }
 
-header {
-    display: flex;
-    width: 100vw;
-    padding-left: 31px;
-}
-
-.body {
+.body-container {
     display: flex;
     align-items: center;
     justify-content: center;
