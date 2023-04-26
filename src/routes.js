@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Login from './containers/Login'
 import ChangePassword from './containers/Login/ChangePassword'
+import ProfessorClasses from './containers/ProfessorClasses'
 
 const Routes = () => {
 	return (
@@ -26,6 +27,8 @@ const Routes = () => {
 					path='/aluno'
 				/>
 				<Route component={ChangePassword} path='/changepassword' />
+				<Route component={ProfessorClasses} path='/turmas' />
+			
 			</Switch>
 		</BrowserRouter>
 	)
