@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom'
 import './style.css'
 import { useAuth } from '../../context/AuthContext'
 import { Button, TextField } from '@material-ui/core'
-import Logo from '../../images/logo.svg'
+import Logo from '../../images/larichair_icon.png'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import LockIcon from '@mui/icons-material/Lock'
 import EmailIcon from '@mui/icons-material/Email'
+
 const Login = () => {
 	const { handleSubmit } = useForm()
 	const { login } = useAuth()
