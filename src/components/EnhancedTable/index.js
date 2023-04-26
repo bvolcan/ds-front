@@ -23,6 +23,7 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import './style.css'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function createData(data) {
 	let titulo = data.title
@@ -150,64 +151,6 @@ EnhancedTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired
 }
 
-function EnhancedTableToolbar(props) {
-	const { numSelected } = props
-
-	return (
-		<Toolbar
-			sx={{
-				pl: { sm: 2 },
-				pr: { xs: 1, sm: 1 },
-				...(numSelected > 0 && {
-					bgcolor: (theme) =>
-						alpha(
-							theme.palette.primary.main,
-							theme.palette.action.activatedOpacity
-						)
-				})
-			}}
-		>
-			{numSelected > 0 ? (
-				<Typography
-					sx={{ flex: '1 1 100%' }}
-					color='inherit'
-					variant='subtitle1'
-					component='div'
-				>
-					{numSelected} selected
-				</Typography>
-			) : (
-				<Typography
-					sx={{ flex: '1 1 100%' }}
-					variant='h6'
-					id='tableTitle'
-					component='div'
-				>
-					Nutrition
-				</Typography>
-			)}
-
-			{numSelected > 0 ? (
-				<Tooltip title='Delete'>
-					<IconButton>
-						<DeleteIcon />
-					</IconButton>
-				</Tooltip>
-			) : (
-				<Tooltip title='Filter list'>
-					<IconButton>
-						<FilterListIcon />
-					</IconButton>
-				</Tooltip>
-			)}
-		</Toolbar>
-	)
-}
-
-EnhancedTableToolbar.propTypes = {
-	numSelected: PropTypes.number.isRequired
-}
-
 const EnhancedTable = (data) => {
 	const [order, setOrder] = React.useState(DEFAULT_ORDER)
 	const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY)
@@ -217,9 +160,19 @@ const EnhancedTable = (data) => {
 	const [visibleRows, setVisibleRows] = React.useState(null)
 	const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE)
 	const [paddingHeight, setPaddingHeight] = React.useState(0)
-	const [rows, setRows] = React.useState(
-		data?.data.map((proposal, i) => createData(proposal))
-	)
+	const [rows, setRows] = React.useState([])
+
+	useEffect(() => {
+		const getTableData = async () => {
+			try {
+				setRows(data?.data.map((proposal, i) => createData(proposal)))
+			} catch (error) {
+				console.log(error)
+			}
+			data?.data.map((proposal, i) => createData(proposal))
+		}
+		getTableData()
+	}, [])
 
 	console.log(data)
 	console.log(rows)
@@ -355,43 +308,44 @@ const EnhancedTable = (data) => {
 							rowCount={rows.length}
 						/>
 						<TableBody>
-							{visibleRows
-								? visibleRows.map((row, index) => {
-										const isItemSelected = isSelected(row.titulo)
-										const labelId = `enhanced-table-checkbox-${index}`
-
-										return (
-											<TableRow
-												hover
-												role='checkbox'
-												aria-checked={isItemSelected}
-												tabIndex={-1}
-												key={row.titulo}
-												selected={isItemSelected}
+							{rows.length > 0 ? (
+								rows?.map((row, index) => {
+									return (
+										<TableRow hover key={row.titulo + index}>
+											<TableCell
+												component='th'
+												scope='row'
+												padding='normal'
+												// sx={{ pl: 4 }}
+												align='left'
 											>
-												<TableCell
-													component='th'
-													id={labelId}
-													scope='row'
-													padding='normal'
-													// sx={{ pl: 4 }}
-													align='left'
-												>
-													{row.titulo}
-												</TableCell>
-												<TableCell align='left'>{row.turma}</TableCell>
-												<TableCell align='left'>{row.orientador}</TableCell>
-												<TableCell align='left'>{row.status}</TableCell>
-												<TableCell align='left'>
-													<Link to={`viewproposal/${row.id}`}>Ver</Link>
-												</TableCell>
-												<TableCell align='left'>
-													<Link to={`viewrevision/${row.id}`}>Ver</Link>
-												</TableCell>
-											</TableRow>
-										)
-								  })
-								: null}
+												{row.titulo}
+											</TableCell>
+											<TableCell align='left'>{row.turma}</TableCell>
+											<TableCell align='left'>{row.orientador}</TableCell>
+											<TableCell align='left'>{row.status}</TableCell>
+											<TableCell align='left'>
+												<Link to={`viewproposal/${row.id}`}>Ver</Link>
+											</TableCell>
+											<TableCell align='left'>
+												<Link to={`viewrevision/${row.id}`}>Ver</Link>
+											</TableCell>
+										</TableRow>
+									)
+								})
+							) : (
+								<TableRow key='vazio'>
+									<TableCell
+										component='th'
+										scope='row'
+										padding='normal'
+										align='center'
+										colSpan={6}
+									>
+										Você ainda não submeteu nenhuma proposta.
+									</TableCell>
+								</TableRow>
+							)}
 							{paddingHeight > 0 && (
 								<TableRow
 									style={{

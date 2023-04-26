@@ -5,6 +5,13 @@ import UploadButton from '../../../components/UploadButton'
 import { Header } from '../../../components'
 import { studentRequest } from '../../../services'
 
+let studentData2 = {
+	userEmail: 'lwtavares@inf.ufpel.edu.br',
+	userName: 'Leandro Weber Tavares',
+	activeClass: [],
+	proposals: []
+}
+
 const StudentList = () => {
 	const [studentData, setStudentData] = useState(null)
 
@@ -29,8 +36,8 @@ const StudentList = () => {
 					<h2>
 						Olá {studentData.userName},{' '}
 						{studentData.activeClass === []
-							? `você está matriculado na turma ${studentData.activeClass.name}`
-							: 'você não está matriculado em nenhuma turma'}
+							? `você está matriculado na turma ${studentData.activeClass.name}.`
+							: 'você não está matriculado em nenhuma turma.'}
 					</h2>
 				</div>
 				<div className='table'>
@@ -43,7 +50,7 @@ const StudentList = () => {
 						</div>
 					</div>
 					<div className='submissions-table'>
-						<EnhancedTable data={studentData.proposals} />
+						<EnhancedTable data={studentData2.proposals} />
 					</div>
 				</div>
 			</div>
