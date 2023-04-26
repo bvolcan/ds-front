@@ -31,8 +31,9 @@ function createData(data) {
 	let orientador = data.professor.user.name
 	let status = data.status
 	let id = data.id
+	let link = data.link
 
-	return { titulo, turma, orientador, status, id }
+	return { titulo, turma, orientador, status, id, link }
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -321,11 +322,13 @@ const EnhancedTable = (data) => {
 											>
 												{row.titulo}
 											</TableCell>
-											<TableCell align='left'>{row.turma}</TableCell>
+											<TableCell align='left'>
+												{row.turma.toUpperCase()}
+											</TableCell>
 											<TableCell align='left'>{row.orientador}</TableCell>
 											<TableCell align='left'>{row.status}</TableCell>
 											<TableCell align='left'>
-												<Link to={`verproposta/${row.id}`}>Ver</Link>
+												<a href={`${row.link}`}>PDF</a>
 											</TableCell>
 											<TableCell align='left'>
 												<Link to={`verrevisao/?proposalId=${row.id}`}>Ver</Link>
