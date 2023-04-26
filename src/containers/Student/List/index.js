@@ -5,13 +5,6 @@ import UploadButton from '../../../components/UploadButton'
 import { Header } from '../../../components'
 import { studentRequest } from '../../../services'
 
-let studentData2 = {
-	userEmail: 'lwtavares@inf.ufpel.edu.br',
-	userName: 'Leandro Weber Tavares',
-	activeClass: [],
-	proposals: []
-}
-
 const StudentList = () => {
 	const [studentData, setStudentData] = useState(null)
 
@@ -50,7 +43,7 @@ const StudentList = () => {
 						</div>
 					</div>
 					<div className='submissions-table'>
-						<EnhancedTable data={studentData2.proposals} />
+						<EnhancedTable data={studentData.proposals} />
 					</div>
 				</div>
 			</div>
