@@ -27,7 +27,7 @@ const Routes = () => {
 					path='/aluno'
 				/>
 				<Route component={ChangePassword} path='/changepassword' />
-				<Route component={Submission} path='/submissaodeproposta' />
+				<Route component={Submission} path='/proposta/submissao' />
 			</Switch>
 		</BrowserRouter>
 	)
