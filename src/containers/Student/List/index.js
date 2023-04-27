@@ -4,6 +4,7 @@ import EnhancedTable from '../../../components/EnhancedTable'
 import UploadButton from '../../../components/UploadButton'
 import { Header } from '../../../components'
 import { studentRequest } from '../../../services'
+import { Link } from 'react-router-dom'
 
 const StudentList = () => {
 	const [studentData, setStudentData] = useState(null)
@@ -39,7 +40,7 @@ const StudentList = () => {
 							<h3>Suas submissões</h3>
 						</div>
 						<div className='table-header-button'>
-							<UploadButton />
+							<Link to={'/proposalsubmission'}>Nova Submissão</Link>
 						</div>
 					</div>
 					<div className='submissions-table'>

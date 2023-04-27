@@ -30,3 +30,20 @@
 	line-height: 48px;
 	color: #171a1fff;
 }
+
+.table-header-button {
+	background: #00bbaaff;
+	opacity: 1;
+	border: none;
+	border-radius: 6px;
+	padding: 0.6rem 1.2rem;
+}
+
+.table-header-button:hover {
+	background: #00a99bff;
+}
+
+.table-header-button a {
+	text-decoration: none;
+	color: #ffffffff;
+}
