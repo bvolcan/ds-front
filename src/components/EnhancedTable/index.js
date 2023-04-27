@@ -328,7 +328,13 @@ const EnhancedTable = (data) => {
 											<TableCell align='left'>{row.orientador}</TableCell>
 											<TableCell align='left'>{row.status}</TableCell>
 											<TableCell align='left'>
-												<a href={`${row.link}`}>PDF</a>
+												<a
+													href={`${row.link}`}
+													target='_blank'
+													rel='noopener noreferrer'
+												>
+													PDF
+												</a>
 											</TableCell>
 											<TableCell align='left'>
 												<Link to={`verrevisao/?proposalId=${row.id}`}>Ver</Link>
