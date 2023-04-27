@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.css'
 import { TextField, Button, Select, MenuItem } from '@material-ui/core'
 import { useDropzone } from 'react-dropzone'
@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import { Header } from '../../components'
 import { proposalSubmission } from '../../services/proposal'
+import { professorsRequest } from '../../services'
 
 const Submission = () => {
 	const { handleSubmit } = useForm()
@@ -16,6 +17,21 @@ const Submission = () => {
 			'application/pdf': ['.pdf']
 		}
 	})
+
+	const [professorsData, setProfessorsData] = useState(null)
+
+	useEffect(() => {
+		const getProfessorsData = async () => {
+			try {
+				const { data } = await professorsRequest()
+				console.log(data)
+				setProfessorsData(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		getProfessorsData()
+	}, [])
 
 	const [formData, setFormData] = useState({})
 
@@ -94,15 +110,9 @@ const Submission = () => {
 								backgroundColor: '#F3F4F6FF'
 							}}
 						>
-							<MenuItem value='adubois@inf.ufpel.edu.br'>
-								André du Bois
-							</MenuItem>
-							<MenuItem value='larissa@inf.ufpel.edu.br'>
-								Larissa Freitas
-							</MenuItem>
-							<MenuItem value='marilton@inf.ufpel.edu.br'>
-								Marilton Sanchotene Aguiar
-							</MenuItem>
+							{professorsData?.map((professor) => (
+								<MenuItem value={professor.email}>{professor.name}</MenuItem>
+							))}
 						</Select>
 					</div>
 					<div className='co-advisor input'>
