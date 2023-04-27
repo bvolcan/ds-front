@@ -40,7 +40,7 @@ const StudentList = () => {
 							<h3>Suas submissões</h3>
 						</div>
 						<div className='table-header-button'>
-							<Link to={'/proposalsubmission'}>Nova Submissão</Link>
+							<Link to={'/proposta/submissao'}>Nova Submissão</Link>
 						</div>
 					</div>
 					<div className='submissions-table'>

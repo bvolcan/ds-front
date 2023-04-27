@@ -137,7 +137,7 @@ const Submission = () => {
 				<div className='file input'>
 					<h4>Arquivo</h4>
 					<div {...getRootProps({ className: 'dropzone' })}>
-						<input required {...getInputProps()} />
+						<input id='file' name='file' {...getInputProps()} />
 						{files.length > 0 ? (
 							files
 						) : (
