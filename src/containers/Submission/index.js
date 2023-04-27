@@ -3,10 +3,13 @@ import './style.css'
 import { TextField, Button, Select, MenuItem } from '@material-ui/core'
 import { useDropzone } from 'react-dropzone'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 import { Header } from '../../components'
+import { proposalSubmission } from '../../services/proposal'
 
 const Submission = () => {
 	const { handleSubmit } = useForm()
+	const history = useHistory()
 	const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
 		maxFiles: 1,
 		accept: {
@@ -14,23 +17,40 @@ const Submission = () => {
 		}
 	})
 
-	const [title, setTitle] = useState('')
-	const [advisor, setAdvisor] = useState('')
-	const [coAdvisor, setCoAdvisor] = useState('')
-	const [abstract, setAbstract] = useState('')
+	const [formData, setFormData] = useState({})
 
 	const onSubmit = (e) => {
-		console.log({
-			title: title,
-			advisor: advisor,
-			coAdvisor: coAdvisor,
-			abstract: abstract,
-			files: files
+		const proposalFormData = new FormData()
+		proposalFormData.append('title', formData.title)
+		proposalFormData.append('advisorEmail', formData.advisorEmail)
+		proposalFormData.append('coadvisor', formData.coadvisor)
+		proposalFormData.append('abstract', formData.abstract)
+		proposalFormData.append('keywords', '')
+		proposalFormData.append('file', acceptedFiles[0])
+
+		submitProposal(proposalFormData)
+	}
+
+	const handleFormChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
 		})
 	}
 
+	const submitProposal = async (proposalData) => {
+		try {
+			const { data } = await proposalSubmission(proposalData)
+			console.log(data)
+		} catch (error) {
+			console.log(error)
+		} finally {
+			history.push('/aluno')
+		}
+	}
+
 	const files = acceptedFiles.map((file) => (
-		<p className='file' key={file.path}>
+		<p className='file uploaded' key={file.path}>
 			{file.path} - {file.size} bytes
 			<span>Clique aqui para enviar um novo arquivo</span>
 		</p>
@@ -50,13 +70,14 @@ const Submission = () => {
 					<TextField
 						required
 						id='title'
+						name='title'
 						placeholder='Insira o título da proposta'
 						variant='outlined'
 						style={{
 							width: '100%',
 							backgroundColor: '#F3F4F6FF'
 						}}
-						onChange={(e) => setTitle(e.target.value)}
+						onChange={handleFormChange}
 					/>
 				</div>
 				<div className='advisors'>
@@ -64,27 +85,35 @@ const Submission = () => {
 						<span>Orientador</span>
 						<Select
 							id='advisor'
+							name='advisorEmail'
 							variant='outlined'
-							value={advisor}
-							onChange={(e) => setAdvisor(e.target.value)}
+							value={formData.advisorEmail}
+							onChange={handleFormChange}
 							style={{
 								width: 'calc(100% - 15px)',
 								backgroundColor: '#F3F4F6FF'
 							}}
 						>
-							<MenuItem value='1'>Orientador 1</MenuItem>
-							<MenuItem value='2'>Orientador 2</MenuItem>
-							<MenuItem value='3'>Orientador 3</MenuItem>
+							<MenuItem value='adubois@inf.ufpel.edu.br'>
+								André du Bois
+							</MenuItem>
+							<MenuItem value='larissa@inf.ufpel.edu.br'>
+								Larissa Freitas
+							</MenuItem>
+							<MenuItem value='marilton@inf.ufpel.edu.br'>
+								Marilton Sanchotene Aguiar
+							</MenuItem>
 						</Select>
 					</div>
 					<div className='co-advisor input'>
 						<span>Coorientador</span>
 						<TextField
 							id='co-advisor'
+							name='coadvisor'
 							placeholder='Insira o nome do coorientador'
 							variant='outlined'
 							style={{ width: '100%', backgroundColor: '#F3F4F6FF' }}
-							onChange={(e) => setCoAdvisor(e.target.value)}
+							onChange={handleFormChange}
 						/>
 					</div>
 				</div>
@@ -93,6 +122,7 @@ const Submission = () => {
 					<TextField
 						required
 						id='abstract'
+						name='abstract'
 						placeholder='Insira o resumo da proposta'
 						variant='outlined'
 						multiline
@@ -101,7 +131,7 @@ const Submission = () => {
 							width: '100%',
 							backgroundColor: '#F3F4F6FF'
 						}}
-						onChange={(e) => setAbstract(e.target.value)}
+						onChange={handleFormChange}
 					/>
 				</div>
 				<div className='file input'>

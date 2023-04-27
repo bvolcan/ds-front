@@ -7,7 +7,6 @@ import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
 import ViewClass from './containers/Advisor/ViewClass'
 
-
 const Routes = () => {
 	return (
 		<BrowserRouter>
@@ -25,7 +24,7 @@ const Routes = () => {
 				<Route component={ViewRevision} path='/verrevisao' />
 				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />
-				<Route component={Submission} path='/proposalsubmission' />
+				<Route component={Submission} path='/proposta/submissao' />
 			</Switch>
 		</BrowserRouter>
 	)
