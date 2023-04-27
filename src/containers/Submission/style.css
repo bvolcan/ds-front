@@ -82,13 +82,12 @@
 }
 
 .file {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
 }
 
 .file.uploaded {
-    align-items: center;
+	align-items: center;
 }
-

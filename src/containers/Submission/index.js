@@ -3,7 +3,7 @@ import './style.css'
 import { TextField, Button, Select, MenuItem } from '@material-ui/core'
 import { useDropzone } from 'react-dropzone'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { Header } from '../../components'
 import { proposalSubmission } from '../../services/proposal'
 import { professorsRequest } from '../../services'
@@ -169,6 +169,9 @@ const Submission = () => {
 							marginRight: 22,
 							backgroundColor: '#E4FFFDFF',
 							color: '#00BBAAFF'
+						}}
+						onClick={() => {
+							history.push('/aluno')
 						}}
 					>
 						Cancelar
