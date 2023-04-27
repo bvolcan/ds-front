@@ -29,8 +29,8 @@ const StudentList = () => {
 				<div className='title'>
 					<h2>
 						Olá {studentData.userName},{' '}
-						{studentData.activeClass === []
-							? `você está matriculado na turma ${studentData.activeClass.name}.`
+						{studentData.activeClass.length > 0
+							? `você está matriculado na turma ${studentData.activeClass[0].name}.`
 							: 'você não está matriculado em nenhuma turma.'}
 					</h2>
 				</div>
