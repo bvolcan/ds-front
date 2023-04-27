@@ -1,10 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from './containers/Login'
+import Submission from './containers/Submission'
 import ChangePassword from './containers/ChangePassword'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
 import ViewClass from './containers/Advisor/ViewClass'
+
 
 const Routes = () => {
 	return (
@@ -23,6 +25,7 @@ const Routes = () => {
 				<Route component={ViewRevision} path='/verrevisao' />
 				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />
+				<Route component={Submission} path='/proposalsubmission' />
 			</Switch>
 		</BrowserRouter>
 	)
