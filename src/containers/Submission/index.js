@@ -3,7 +3,7 @@ import './style.css'
 import { TextField, Button, Select, MenuItem } from '@material-ui/core'
 import { useDropzone } from 'react-dropzone'
 import { useForm } from 'react-hook-form'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Header } from '../../components'
 import { proposalSubmission } from '../../services/proposal'
 import { professorsRequest } from '../../services'
@@ -19,8 +19,10 @@ const Submission = () => {
 	})
 
 	const [professorsData, setProfessorsData] = useState(null)
+	const [activeClassName, setActiveClassName] = useState('')
 
 	useEffect(() => {
+		setActiveClassName(localStorage.getItem('activeClassName'))
 		const getProfessorsData = async () => {
 			try {
 				const { data } = await professorsRequest()
@@ -79,7 +81,7 @@ const Submission = () => {
 			<form className='submission-form' onSubmit={handleSubmit(onSubmit)}>
 				<div className='form-header'>
 					<h3>Nova proposta</h3>
-					<h5>Turma MM/YYYY</h5>
+					{activeClassName && <h4>Turma: {activeClassName}</h4>}
 				</div>
 				<div className='title input'>
 					<span>Título</span>

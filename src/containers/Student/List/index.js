@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import EnhancedTable from '../../../components/EnhancedTable'
-import UploadButton from '../../../components/UploadButton'
 import { Header } from '../../../components'
 import { studentRequest } from '../../../services'
 import { Link } from 'react-router-dom'
@@ -15,6 +14,7 @@ const StudentList = () => {
 				const { data } = await studentRequest()
 				console.log(data)
 				setStudentData(data)
+				localStorage.setItem('activeClassName', data.activeClass[0].name)
 			} catch (error) {
 				console.log(error)
 			}
