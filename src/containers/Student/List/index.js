@@ -30,7 +30,7 @@ const StudentList = () => {
 					<h2>
 						Olá {studentData.userName},{' '}
 						{studentData.activeClass.length > 0
-							? `você está matriculado na turma ${studentData.activeClass[0].name}.`
+							? `você está matriculado na turma ${studentData.activeClass[0].name.toUpperCase()}.`
 							: 'você não está matriculado em nenhuma turma.'}
 					</h2>
 				</div>

@@ -81,7 +81,7 @@ const Submission = () => {
 			<form className='submission-form' onSubmit={handleSubmit(onSubmit)}>
 				<div className='form-header'>
 					<h3>Nova proposta</h3>
-					{activeClassName && <h4>Turma: {activeClassName}</h4>}
+					{activeClassName && <h4>Turma: {activeClassName.toUpperCase()}</h4>}
 				</div>
 				<div className='title input'>
 					<span>Título</span>
