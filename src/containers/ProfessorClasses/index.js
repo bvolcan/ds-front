@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './style.css'
 import { Button } from '@mui/material'
-import { Dashboard, Folder, Groups, Create } from '@mui/icons-material'
+import { Dashboard, Folder, Groups, Create, Class } from '@mui/icons-material'
 import {
 	Header,
 	ClassesContainer,
@@ -48,65 +48,85 @@ const turmas = {
 }
 
 const ProfessorClasses = () => {
-	const [componenteAtual, setComponenteAtual] = useState('orientacao')
+  const [componenteAtual, setComponenteAtual] = useState('orientacao');
+
+    function handleClickOrientacao() {
+      setComponenteAtual('orientacao');
+    }
+
+    function handleClickRevisao() {
+      setComponenteAtual('revisao');
+    }
+
+    function handleClickCoordenacao() {
+      setComponenteAtual('coordenacao');
+    }
 
 	return (
 		<div className='container-class'>
 			<Header />
 			<div className='menu-lateral'>
 				<div className='menu'>
-					<Button
-						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							// borderLeft: 3 'solid' 'red',
-							width: 240,
-							height: 52,
-							color: '#00BBAAFF'
-						}}
-						type='submit'
-						startIcon={<Dashboard />}
-						// onClick={handleClick('orientacao')}
-					>
-						Orientações
-					</Button>
+          <div>
+            {componenteAtual === 'orientacao' ? <ClassesContainer/> : null}
+            {componenteAtual === 'revisao' ? <ClassesContainer/> : null}
+            {componenteAtual === 'coordenacao' ? <CoordinatorClassesContainer/> : null}
 
-					<Button
-						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#565D6DFF'
-						}}
-						type='submit'
-						startIcon={<Folder />}
-						// onClick={handleClick('revisao')}
-					>
-						Revisões
-					</Button>
+            <Button
+              variant='text'
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+                alignItems: 'center',
+                // borderLeft: 3 'solid' 'red',
+                width: 240,
+                height: 52,
+                color: '#00BBAAFF'
+              }}
+              type='submit'
+              startIcon={<Dashboard />}
+              onClick={handleClickOrientacao}
+            >
+              Orientações
+            </Button>
 
-					<Button
-						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#565D6DFF'
-						}}
-						type='submit'
-						startIcon={<Groups />}
-						// onClick={handleClick('coordenacao')}
-					>
-						Coordenações
-					</Button>
+            <Button
+              variant='text'
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+                alignItems: 'center',
+                width: 240,
+                height: 52,
+                color: '#565D6DFF'
+              }}
+              type='submit'
+              startIcon={<Folder />}
+              onClick={handleClickRevisao}
+            >
+              Revisões
+            </Button>
+
+            <Button
+              variant='text'
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+                alignItems: 'center',
+                width: 240,
+                height: 52,
+                color: '#565D6DFF'
+              }}
+              type='submit'
+              startIcon={<Groups />}
+              onClick={handleClickCoordenacao}
+            >
+              Coordenações
+            </Button>
+          </div>
+					
 				</div>
+
 				<div>
 					<Button
 						variant='contained'

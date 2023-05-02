@@ -1,7 +1,15 @@
 import React from 'react'
 
 const ClassesContainer = () => {
-	return <div>ClassesContainer</div>
+	return (
+		<div>
+		<p>
+			Tela inicial
+		</p>
+		
+
+		</div>
+	)
 }
 
 export default ClassesContainer
