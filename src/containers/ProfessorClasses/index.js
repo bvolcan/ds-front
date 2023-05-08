@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './style.css'
 import { Button } from '@mui/material'
@@ -8,135 +8,123 @@ import {
 	ClassesContainer,
 	CoordinatorClassesContainer
 } from '../../components'
-
-const turmas = {
-	coordinatorClasses: [
-		{
-			id: 1,
-			name: 'tcc1 2021/2',
-			startDate: '2021-01-28T03:00:00.000Z',
-			endDate: '2023-04-30T03:00:00.000Z'
-		},
-		{
-			id: 2,
-			name: 'tcc1 2022/1',
-			startDate: '2021-01-28T03:00:00.000Z',
-			endDate: '2023-04-30T03:00:00.000Z'
-		},
-		{
-			id: 3,
-			name: 'tcc1 2022/2',
-			startDate: '2021-01-28T03:00:00.000Z',
-			endDate: '2023-04-30T03:00:00.000Z'
-		},
-		{
-			id: 4,
-			name: 'tcc1 2023/1',
-			startDate: '2021-01-28T03:00:00.000Z',
-			endDate: '2023-04-30T03:00:00.000Z'
-		}
-	],
-	advisorClasses: [
-		{
-			id: 1,
-			name: 'tcc1 2021/2',
-			startDate: '2021-01-28T03:00:00.000Z',
-			endDate: '2023-04-30T03:00:00.000Z'
-		}
-	],
-	reviewerClasses: []
-}
+import { professorsClassesRequest } from '../../services'
 
 const ProfessorClasses = () => {
 	const [componenteAtual, setComponenteAtual] = useState('orientacao')
+	const [classesData, setClassesData] = useState(null)
+
+	useEffect(() => {
+		const getClassesData = async () => {
+			try {
+				const { data } = await professorsClassesRequest()
+				console.log(data)
+				setClassesData(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		getClassesData()
+	}, [])
+	console.log(classesData)
 
 	return (
-		<div className='container-class'>
-			<Header />
-			<div className='menu-lateral'>
-				<div className='menu'>
-					<Button
-						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							// borderLeft: 3 'solid' 'red',
-							width: 240,
-							height: 52,
-							color: '#00BBAAFF'
-						}}
-						type='submit'
-						startIcon={<Dashboard />}
-						// onClick={handleClick('orientacao')}
-					>
-						Orientações
-					</Button>
+		classesData && (
+			<div className='container-class'>
+				<Header />
+				<div className='menu-lateral'>
+					<div className='menu'>
+						<Button
+							variant='text'
+							style={{
+								fontSize: 16,
+								fontWeight: 'bold',
+								alignItems: 'center',
+								// borderLeft: 3 'solid' 'red',
+								width: 240,
+								height: 52,
+								color: '#00BBAAFF'
+							}}
+							type='submit'
+							startIcon={<Dashboard />}
+							// onClick={handleClick('orientacao')}
+						>
+							Orientações
+						</Button>
 
-					<Button
-						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#565D6DFF'
-						}}
-						type='submit'
-						startIcon={<Folder />}
-						// onClick={handleClick('revisao')}
-					>
-						Revisões
-					</Button>
+						<Button
+							variant='text'
+							style={{
+								fontSize: 16,
+								fontWeight: 'bold',
+								alignItems: 'center',
+								width: 240,
+								height: 52,
+								color: '#565D6DFF'
+							}}
+							type='submit'
+							startIcon={<Folder />}
+							// onClick={handleClick('revisao')}
+						>
+							Revisões
+						</Button>
 
-					<Button
-						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#565D6DFF'
-						}}
-						type='submit'
-						startIcon={<Groups />}
-						// onClick={handleClick('coordenacao')}
-					>
-						Coordenações
-					</Button>
+						<Button
+							variant='text'
+							style={{
+								fontSize: 16,
+								fontWeight: 'bold',
+								alignItems: 'center',
+								width: 240,
+								height: 52,
+								color: '#565D6DFF'
+							}}
+							type='submit'
+							startIcon={<Groups />}
+							// onClick={handleClick('coordenacao')}
+						>
+							Coordenações
+						</Button>
+					</div>
+					<div>
+						<Button
+							variant='contained'
+							style={{
+								marginTop: 360,
+								width: 240,
+								height: 52,
+								backgroundColor: '#E4FFFDFF',
+								color: '#00BBAAFF'
+							}}
+							type='submit'
+							startIcon={<Create />}
+						>
+							Criar Turma
+						</Button>
+					</div>
 				</div>
-				<div>
-					<Button
-						variant='contained'
-						style={{
-							marginTop: 360,
-							width: 240,
-							height: 52,
-							backgroundColor: '#E4FFFDFF',
-							color: '#00BBAAFF'
-						}}
-						type='submit'
-						startIcon={<Create />}
-					>
-						Criar Turma
-					</Button>
+
+				<div className='body-classes'>
+					<h1>Turmas</h1>
+
+					<div className='cards'>
+						{classesData.advisorClasses.map((turma) => (
+							<Link
+								to='/professor/turma'
+								className='itens'
+								onClick={localStorage.setItem('classId', turma.id)}
+							>
+								<h3>{turma.name}</h3>
+
+								<span className='item-status'>
+									Status: <p>Ativa</p>
+								</span>
+							</Link>
+						))}
+					</div>
 				</div>
 			</div>
-
-			<div className='body-classes'>
-				<h1>Turmas</h1>
-
-				<div className='cards'>
-					{turmas.coordinatorClasses.map((turma) => (
-						<Link to='/' className='itens'>
-							Turma: {turma.name}
-						</Link>
-					))}
-				</div>
-			</div>
-		</div>
+		)
 	)
 }
 
