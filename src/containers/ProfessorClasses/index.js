@@ -78,7 +78,6 @@ const ProfessorClasses = () => {
                 fontSize: 16,
                 fontWeight: 'bold',
                 alignItems: 'center',
-                // borderLeft: 3 'solid' 'red',
                 width: 240,
                 height: 52,
                 color: '#00BBAAFF'
