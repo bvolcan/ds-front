@@ -1,0 +1,49 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* height: 100vh; */
+}
+
+.title h2 {
+	font-size: 32px;
+	line-height: 48px;
+	color: #171a1fff;
+	font-weight: normal;
+}
+
+.table {
+	margin: 2rem;
+	width: 80%;
+}
+
+.table-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+}
+
+.table-header-text h3 {
+	font-size: 32px;
+	line-height: 48px;
+	color: #171a1fff;
+}
+
+.table-header-button {
+	background: #00bbaaff;
+	opacity: 1;
+	border: none;
+	border-radius: 6px;
+	padding: 0.6rem 1.2rem;
+}
+
+.table-header-button:hover {
+	background: #00a99bff;
+}
+
+.table-header-button a {
+	text-decoration: none;
+	color: #ffffffff;
+}

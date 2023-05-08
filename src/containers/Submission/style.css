@@ -1,0 +1,93 @@
+.submission-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	padding: 0 10.6vw 0 8.3vw;
+}
+
+.submission-form {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 15px 16px 0 28px;
+	border: #bdc1caff 1px solid;
+	border-radius: 6px;
+	margin-bottom: 15px;
+}
+
+.submission-form span {
+	font-family: 'Mulish', sans-serif;
+}
+
+.submission-form h4 {
+	font-family: 'Mulish', sans-serif;
+}
+
+.form-header {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-header h3 {
+	font-size: 35px;
+	font-family: 'Poppins', sans-serif;
+}
+
+.form-header h5 {
+	font-family: 'Mulish', sans-serif;
+	font-size: 20px;
+	color: #1e2128ff;
+}
+
+.advisors {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.input {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-around;
+}
+
+.dropzone {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 5.5rem;
+	background-color: #f3f4f6ff;
+	border-radius: 8px;
+	border: #bdc1caff 2px dotted;
+	cursor: pointer;
+}
+
+.dropzone span {
+	color: #6f7787ff;
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+	margin: 15px 0 15px 0;
+}
+
+.file {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.file.uploaded {
+	align-items: center;
+}
