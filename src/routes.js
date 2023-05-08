@@ -6,23 +6,14 @@ import ChangePassword from './containers/ChangePassword'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
 import ViewClass from './containers/Advisor/ViewClass'
-
 const Routes = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
 				<Route component={Login} path='/' exact />
-				<Route
-					component={() => (
-						<div>
-							<h1>Dashboard Professor</h1>
-						</div>
-					)}
-					path='/professor'
-				/>
+				<Route component={ViewClass} path='/professor' />
 				<Route component={StudentList} path='/aluno' />
 				<Route component={ViewRevision} path='/verrevisao' />
-				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />
 				<Route component={Submission} path='/proposta/submissao' />
 			</Switch>
