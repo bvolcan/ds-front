@@ -6,6 +6,7 @@ import ChangePassword from './containers/ChangePassword'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
 import ViewClass from './containers/Advisor/ViewClass'
+import ReviewSubmission from './containers/ReviewSubmission'
 
 const Routes = () => {
 	return (
@@ -25,6 +26,7 @@ const Routes = () => {
 				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />
 				<Route component={Submission} path='/proposta/submissao' />
+				<Route component={ReviewSubmission} path='/proposta/:id/revisao' />
 			</Switch>
 		</BrowserRouter>
 	)
