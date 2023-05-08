@@ -26,7 +26,7 @@ const Routes = () => {
 				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />
 				<Route component={Submission} path='/proposta/submissao' />
-				<Route component={ReviewSubmission} path='/proposta/:id/revisao' />
+				<Route component={ReviewSubmission} path='/proposta/revisao' />
 			</Switch>
 		</BrowserRouter>
 	)

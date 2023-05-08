@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import {
 	TextField,
 	Button,
-	Select,
-	MenuItem,
 	Radio,
 	RadioGroup,
 	FormControl,
@@ -14,8 +12,41 @@ import {
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import { Header } from '../../components'
+import { reviewSubmission } from '../../services'
 
 const ReviewSubmission = () => {
+	const { handleSubmit } = useForm()
+
+	const [formData, setFormData] = useState({})
+
+	const onSubmit = () => {
+		// localStorage.getItem('currentReviewId')
+		try {
+			submitReview(formData)
+		} catch (error) {
+			console.log(error)
+		} finally {
+			localStorage.removeItem('currentReviewId')
+			// history.push('/')
+		}
+	}
+
+	const handleFormChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
+		})
+	}
+
+	const submitReview = async (reviewData) => {
+		try {
+			const { data } = await reviewSubmission(1, reviewData)
+			if (data !== 1) throw new Error('Erro ao enviar revisão')
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
 		<div className='main-container'>
 			<Header />
@@ -24,28 +55,31 @@ const ReviewSubmission = () => {
 					<h3>Revisão de proposta</h3>
 					<h4>Proposta: Título proposta</h4>
 				</div>
-				<form className='review-submission-form'>
+				<form
+					className='review-submission-form'
+					onSubmit={handleSubmit(onSubmit)}
+				>
 					<div className='review-submission-form-inputs'>
 						<FormControl>
 							<FormLabel>Apresentação e consistência.</FormLabel>
-							<RadioGroup>
+							<RadioGroup name='presentation' onChange={handleFormChange}>
 								<FormControlLabel
-									value='teste1'
+									value='4 - Excelente'
 									control={<Radio />}
 									label='Excelente'
 								/>
 								<FormControlLabel
-									value='teste2'
+									value='3 - Bom'
 									control={<Radio />}
 									label='Bom'
 								/>
 								<FormControlLabel
-									value='teste3'
+									value='2 - Regular'
 									control={<Radio />}
 									label='Regular'
 								/>
 								<FormControlLabel
-									value='teste4'
+									value='1 - Insuficiente'
 									control={<Radio />}
 									label='Insuficiente'
 								/>
@@ -53,24 +87,24 @@ const ReviewSubmission = () => {
 						</FormControl>
 						<FormControl>
 							<FormLabel>Relevância e contribuição.</FormLabel>
-							<RadioGroup>
+							<RadioGroup name='relevance' onChange={handleFormChange}>
 								<FormControlLabel
-									value='teste1'
+									value='4 - Excelente'
 									control={<Radio />}
 									label='Excelente'
 								/>
 								<FormControlLabel
-									value='teste2'
+									value='3 - Bom'
 									control={<Radio />}
 									label='Bom'
 								/>
 								<FormControlLabel
-									value='teste3'
+									value='2 - Regular'
 									control={<Radio />}
 									label='Regular'
 								/>
 								<FormControlLabel
-									value='teste4'
+									value='1 - Insuficiente'
 									control={<Radio />}
 									label='Insuficiente'
 								/>
@@ -78,24 +112,24 @@ const ReviewSubmission = () => {
 						</FormControl>
 						<FormControl>
 							<FormLabel>Metodologia.</FormLabel>
-							<RadioGroup>
+							<RadioGroup name='methodology' onChange={handleFormChange}>
 								<FormControlLabel
-									value='teste1'
+									value='4 - Excelente'
 									control={<Radio />}
 									label='Excelente'
 								/>
 								<FormControlLabel
-									value='teste2'
+									value='3 - Bom'
 									control={<Radio />}
 									label='Bom'
 								/>
 								<FormControlLabel
-									value='teste3'
+									value='2 - Regular'
 									control={<Radio />}
 									label='Regular'
 								/>
 								<FormControlLabel
-									value='teste4'
+									value='1 - Insuficiente'
 									control={<Radio />}
 									label='Insuficiente'
 								/>
@@ -103,14 +137,22 @@ const ReviewSubmission = () => {
 						</FormControl>
 						<FormControl>
 							<FormLabel>Adequação ao curso.</FormLabel>
-							<RadioGroup>
+							<RadioGroup
+								name='wasAdequate'
+								onChange={(e) => {
+									setFormData({
+										...formData,
+										[e.target.name]: e.target.value === 'true'
+									})
+								}}
+							>
 								<FormControlLabel
-									value='teste1'
+									value='true'
 									control={<Radio />}
 									label='Sim'
 								/>
 								<FormControlLabel
-									value='teste2'
+									value='false'
 									control={<Radio />}
 									label='Não'
 								/>
@@ -118,34 +160,42 @@ const ReviewSubmission = () => {
 						</FormControl>
 						<FormControl>
 							<FormLabel>Plano de trabalho a ser desenvolvido.</FormLabel>
-							<RadioGroup>
+							<RadioGroup name='workPlan' onChange={handleFormChange}>
 								<FormControlLabel
-									value='teste1'
+									value='3 - Muito bem especificado e exequível'
 									control={<Radio />}
 									label='Muito bem especificado e exequível'
 								/>
 								<FormControlLabel
-									value='teste2'
+									value='2 - Exequível'
 									control={<Radio />}
 									label='Exequível'
 								/>
 								<FormControlLabel
-									value='teste3'
+									value='1 - Mal especificado e/ou não exequível'
 									control={<Radio />}
-									label='Mal especificado e/ou inexequível'
+									label='Mal especificado e/ou não exequível'
 								/>
 							</RadioGroup>
 						</FormControl>
 						<FormControl>
 							<FormLabel>Avaliação geral.</FormLabel>
-							<RadioGroup>
+							<RadioGroup
+								name='wasApproved'
+								onChange={(e) => {
+									setFormData({
+										...formData,
+										[e.target.name]: e.target.value === 'true'
+									})
+								}}
+							>
 								<FormControlLabel
-									value='teste1'
+									value='true'
 									control={<Radio />}
 									label='Aprovada'
 								/>
 								<FormControlLabel
-									value='teste2'
+									value='false'
 									control={<Radio />}
 									label='Reprovada'
 								/>
@@ -153,19 +203,51 @@ const ReviewSubmission = () => {
 						</FormControl>
 						<div>
 							<span>Resumo da proposta.</span>
-							<TextField required variant='outlined' multiline minRows={5} />
+							<TextField
+								id='summary'
+								name='summary'
+								required
+								variant='outlined'
+								multiline
+								minRows={5}
+								onChange={handleFormChange}
+							/>
 						</div>
 						<div>
 							<span>Pontos fortes da proposta.</span>
-							<TextField required variant='outlined' multiline minRows={5} />
+							<TextField
+								id='strengths'
+								name='strengths'
+								required
+								variant='outlined'
+								multiline
+								minRows={5}
+								onChange={handleFormChange}
+							/>
 						</div>
 						<div>
 							<span>Pontos fracos da proposta</span>
-							<TextField required variant='outlined' multiline minRows={5} />
+							<TextField
+								id='weaknesses'
+								name='weaknesses'
+								required
+								variant='outlined'
+								multiline
+								minRows={5}
+								onChange={handleFormChange}
+							/>
 						</div>
 						<div>
 							<span>Detalhamento da avaliação.</span>
-							<TextField required variant='outlined' multiline minRows={5} />
+							<TextField
+								id='details'
+								name='details'
+								required
+								variant='outlined'
+								multiline
+								minRows={5}
+								onChange={handleFormChange}
+							/>
 						</div>
 					</div>
 					<div className='buttons'>
@@ -178,7 +260,7 @@ const ReviewSubmission = () => {
 								color: '#00BBAAFF'
 							}}
 							// onClick={() => {
-							// 	history.push('/aluno')
+							// 	history.push('/')
 							// }}
 						>
 							Cancelar
