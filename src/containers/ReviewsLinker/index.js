@@ -59,9 +59,7 @@ const ReviewerSelector = ({ id, professorsList, linkedProfessors }) => {
 				defaultValue={selectedReviewers}
 				value={selectedReviewers}
 				onChange={handleChange}
-				input={
-					<OutlinedInput id='professors-multiselect' label='Professores' />
-				}
+				input={<OutlinedInput />}
 				renderValue={(selected) => (
 					<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
 						{selected.map((value) => (
@@ -167,8 +165,10 @@ const ReviewsLinker = () => {
 											  })
 									return (
 										<TableRow key={index}>
-											<TableCell>{proposal.title}</TableCell>
-											<TableCell>
+											<TableCell style={{ width: '40%' }}>
+												{proposal.title}
+											</TableCell>
+											<TableCell style={{ width: '50%' }}>
 												{professorsList !== [] && (
 													<ReviewerSelector
 														id={proposal.id}

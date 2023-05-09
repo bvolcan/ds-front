@@ -24,3 +24,7 @@
     align-items: center;
     width: 100%;
 }
+
+.MuiMenu-list {
+    max-height: 40vh;
+}
