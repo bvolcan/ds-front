@@ -5,7 +5,7 @@ const ChangePassword = () => {
 	return (
 		<div className='container'>
 			<div className='body'>
-				<div className='login-form'>
+				<div className='change-password-form'>
 					<h1>Trocar Senha</h1>
 					<div className='field email'>
 						<span>Senha antiga</span>

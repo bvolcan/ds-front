@@ -1,0 +1,34 @@
+.reviews-linker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+}
+
+.reviews-linker-content {
+    width: 80%;
+}
+
+.reviews-linker-content .MuiTableContainer-root {
+    max-height: 75vh;
+}
+
+.reviews-linker-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reviewer-selector-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.MuiMenu-list {
+    max-height: 40vh;
+}
