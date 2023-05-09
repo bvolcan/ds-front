@@ -1,32 +1,69 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
+import { Button } from '@mui/material'
+import { Edit, InsertLink } from '@mui/icons-material'
+import { useHistory } from 'react-router-dom'
+import './style.css'
 
-const ClassesContainer = (data) => {
-	console.log(data)
+const ClassesContainer = ({ turma, isCoordinator }) => {
+	const history = useHistory()
+
+	console.log(turma)
+	console.log(isCoordinator)
 	return (
-		<div className='classes-container'>
-			<Link
-				to='/professor/turma'
-				className='itens'
-				onClick={localStorage.setItem('classId', data.id)}
-			>
-				<h3>{data.name}</h3>
-				<span className='item-datas'>
-					<p>Inicio: {format(new Date(data.startDate), 'dd/MM/yyyy')}</p>
+		<div className='single-class'>
+			{isCoordinator ? (
+				<div className='itens coordinator'>
+					<h3>{turma.name}</h3>
 
-					<p>Fim: {format(new Date(data.endDate), 'dd/MM/yyyy')}</p>
-				</span>
+					<span className='item-coordinator-menu'>
+						<Button
+							variant='text'
+							type='submit'
+							startIcon={<Edit />}
+							onClick={() => {
+								localStorage.setItem('classId', turma.id)
+								history.push('/professor/turma/editar')
+							}}
+						>
+							Editar
+						</Button>
+						<Button
+							variant='text'
+							type='submit'
+							startIcon={<InsertLink />}
+							onClick={() => {
+								localStorage.setItem('classId', turma.id)
+								history.push('/professor/turma/linkrevisores')
+							}}
+						>
+							Linkar Revisores
+						</Button>
+					</span>
+				</div>
+			) : (
+				<Link
+					to='/professor/turma'
+					className='itens normal'
+					onClick={localStorage.setItem('classId', turma.id)}
+				>
+					<h3>{turma.name}</h3>
+					<span className='item-datas'>
+						<p>Inicio: {format(new Date(turma.startDate), 'dd/MM/yyyy')}</p>
 
-				<span className='item-status'>
-					Status:{' '}
-					{new Date() < new Date(data.endDate) ? (
-						<p className='status-ativa'>Ativa</p>
-					) : (
-						<p className='status-finalizada'>Finalizada</p>
-					)}
-				</span>
-			</Link>
+						<p>Fim: {format(new Date(turma.endDate), 'dd/MM/yyyy')}</p>
+					</span>
+					<span className='item-status'>
+						Status:{' '}
+						{new Date() < new Date(turma.endDate) ? (
+							<p className='status ativa'>Ativa</p>
+						) : (
+							<p className='status finalizada'>Finalizada</p>
+						)}
+					</span>
+				</Link>
+			)}
 		</div>
 	)
 }

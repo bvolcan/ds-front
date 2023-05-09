@@ -6,7 +6,7 @@ import ChangePassword from './containers/ChangePassword'
 import ProfessorClasses from './containers/ProfessorClasses'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
-import ViewClass from './containers/Advisor/ViewClass'
+import ViewClass from './containers/ViewClass'
 const Routes = () => {
 	return (
 		<BrowserRouter>

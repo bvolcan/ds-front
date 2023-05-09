@@ -4,13 +4,12 @@ import { Button } from '@mui/material'
 import { Dashboard, Folder, Groups, Create, Class } from '@mui/icons-material'
 import { Header } from '../../components'
 import { professorsClassesRequest } from '../../services'
-import { Link } from 'react-router-dom'
-import { format } from 'date-fns'
+import ClassesContainer from './ClassesContainer'
 
 const ProfessorClasses = () => {
 	const [classesData, setClassesData] = useState(null)
 	const [componenteAtual, setComponenteAtual] = useState([])
-	const [isLoading, setIsLoading] = useState(true)
+	const [isCoordinator, setIsCoordinator] = useState(false)
 
 	useEffect(() => {
 		const getClassesData = async () => {
@@ -26,19 +25,12 @@ const ProfessorClasses = () => {
 	}, [])
 
 	useEffect(() => {
-		if (classesData) handleClickOrientacao()
+		if (classesData) handleRolesClick('advisorClasses')
 	}, classesData)
 
-	function handleClickOrientacao() {
-		setComponenteAtual(classesData.advisorClasses)
-	}
-
-	function handleClickRevisao() {
-		setComponenteAtual(classesData.reviewerClasses)
-	}
-
-	function handleClickCoordenacao() {
-		setComponenteAtual(classesData.coordinatorClasses)
+	const handleRolesClick = (role) => {
+		setComponenteAtual(classesData[role])
+		setIsCoordinator(role === 'coordinatorClasses')
 	}
 
 	return (
@@ -46,12 +38,6 @@ const ProfessorClasses = () => {
 			<Header />
 			<div className='menu-lateral'>
 				<div className='menu'>
-					{/* {componenteAtual === 'orientacao' ? <ClassesContainer /> : null}
-							{componenteAtual === 'revisao' ? <ClassesContainer /> : null}
-							{componenteAtual === 'coordenacao' ? (
-								<CoordinatorClassesContainer />
-							) : null} */}
-
 					<Button
 						variant='text'
 						style={{
@@ -64,7 +50,7 @@ const ProfessorClasses = () => {
 						}}
 						type='submit'
 						startIcon={<Dashboard />}
-						onClick={handleClickOrientacao}
+						onClick={() => handleRolesClick('advisorClasses')}
 					>
 						Orientações
 					</Button>
@@ -81,7 +67,7 @@ const ProfessorClasses = () => {
 						}}
 						type='submit'
 						startIcon={<Folder />}
-						onClick={handleClickRevisao}
+						onClick={() => handleRolesClick('reviewerClasses')}
 					>
 						Revisões
 					</Button>
@@ -98,7 +84,7 @@ const ProfessorClasses = () => {
 						}}
 						type='submit'
 						startIcon={<Groups />}
-						onClick={handleClickCoordenacao}
+						onClick={() => handleRolesClick('coordinatorClasses')}
 					>
 						Coordenações
 					</Button>
@@ -128,29 +114,7 @@ const ProfessorClasses = () => {
 				{componenteAtual && (
 					<div className='cards'>
 						{componenteAtual.map((turma) => (
-							<Link
-								to='/professor/turma'
-								className='itens'
-								onClick={localStorage.setItem('classId', turma.id)}
-							>
-								<h3>{turma.name}</h3>
-								<span className='item-datas'>
-									<p>
-										Inicio: {format(new Date(turma.startDate), 'dd/MM/yyyy')}
-									</p>
-
-									<p>Fim: {format(new Date(turma.endDate), 'dd/MM/yyyy')}</p>
-								</span>
-
-								<span className='item-status'>
-									Status:{' '}
-									{new Date() < new Date(turma.endDate) ? (
-										<p className='status-ativa'>Ativa</p>
-									) : (
-										<p className='status-finalizada'>Finalizada</p>
-									)}
-								</span>
-							</Link>
+							<ClassesContainer turma={turma} isCoordinator={isCoordinator} />
 						))}
 					</div>
 				)}

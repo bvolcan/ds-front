@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
-import EnhancedTable from '../../../components/EnhancedTable'
-import { Header } from '../../../components'
-import { professorsClassesRequest } from '../../../services'
+import EnhancedTable from '../../components/EnhancedTable'
+import { Header } from '../../components'
+import { professorsClassesRequest } from '../../services'
 
 let turma = 'blabla'
 const ViewClass = () => {
