@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './style.css'
 import { Button } from '@mui/material'
-import { Dashboard, Folder, Groups, Create } from '@mui/icons-material'
-import {
-	Header,
-	ClassesContainer,
-	CoordinatorClassesContainer
-} from '../../components'
+import { Dashboard, Folder, Groups, Create, Class } from '@mui/icons-material'
+import { Header } from '../../components'
 import { professorsClassesRequest } from '../../services'
+import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
+
 const ProfessorClasses = () => {
-	const [componenteAtual, setComponenteAtual] = useState('orientacao')
 	const [classesData, setClassesData] = useState(null)
+	const [componenteAtual, setComponenteAtual] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		const getClassesData = async () => {
@@ -26,89 +24,110 @@ const ProfessorClasses = () => {
 		}
 		getClassesData()
 	}, [])
-	console.log(classesData)
+
+	useEffect(() => {
+		if (classesData) handleClickOrientacao()
+	}, classesData)
+
+	function handleClickOrientacao() {
+		setComponenteAtual(classesData.advisorClasses)
+	}
+
+	function handleClickRevisao() {
+		setComponenteAtual(classesData.reviewerClasses)
+	}
+
+	function handleClickCoordenacao() {
+		setComponenteAtual(classesData.coordinatorClasses)
+	}
 
 	return (
-		classesData && (
-			<div className='container-class'>
-				<Header />
-				<div className='menu-lateral'>
-					<div className='menu'>
-						<Button
-							variant='text'
-							style={{
-								fontSize: 16,
-								fontWeight: 'bold',
-								alignItems: 'center',
-								// borderLeft: 3 'solid' 'red',
-								width: 240,
-								height: 52,
-								color: '#00BBAAFF'
-							}}
-							type='submit'
-							startIcon={<Dashboard />}
-							// onClick={handleClick('orientacao')}
-						>
-							Orientações
-						</Button>
+		<div className='container-class'>
+			<Header />
+			<div className='menu-lateral'>
+				<div className='menu'>
+					{/* {componenteAtual === 'orientacao' ? <ClassesContainer /> : null}
+							{componenteAtual === 'revisao' ? <ClassesContainer /> : null}
+							{componenteAtual === 'coordenacao' ? (
+								<CoordinatorClassesContainer />
+							) : null} */}
 
-						<Button
-							variant='text'
-							style={{
-								fontSize: 16,
-								fontWeight: 'bold',
-								alignItems: 'center',
-								width: 240,
-								height: 52,
-								color: '#565D6DFF'
-							}}
-							type='submit'
-							startIcon={<Folder />}
-							// onClick={handleClick('revisao')}
-						>
-							Revisões
-						</Button>
+					<Button
+						variant='text'
+						style={{
+							fontSize: 16,
+							fontWeight: 'bold',
+							alignItems: 'center',
+							width: 240,
+							height: 52,
+							color: '#00BBAAFF'
+						}}
+						type='submit'
+						startIcon={<Dashboard />}
+						onClick={handleClickOrientacao}
+					>
+						Orientações
+					</Button>
 
-						<Button
-							variant='text'
-							style={{
-								fontSize: 16,
-								fontWeight: 'bold',
-								alignItems: 'center',
-								width: 240,
-								height: 52,
-								color: '#565D6DFF'
-							}}
-							type='submit'
-							startIcon={<Groups />}
-							// onClick={handleClick('coordenacao')}
-						>
-							Coordenações
-						</Button>
-					</div>
-					<div>
-						<Button
-							variant='contained'
-							style={{
-								marginTop: 360,
-								width: 240,
-								height: 52,
-								backgroundColor: '#E4FFFDFF',
-								color: '#00BBAAFF'
-							}}
-							type='submit'
-							startIcon={<Create />}
-						>
-							Criar Turma
-						</Button>
-					</div>
+					<Button
+						variant='text'
+						style={{
+							fontSize: 16,
+							fontWeight: 'bold',
+							alignItems: 'center',
+							width: 240,
+							height: 52,
+							color: '#565D6DFF'
+						}}
+						type='submit'
+						startIcon={<Folder />}
+						onClick={handleClickRevisao}
+					>
+						Revisões
+					</Button>
+
+					<Button
+						variant='text'
+						style={{
+							fontSize: 16,
+							fontWeight: 'bold',
+							alignItems: 'center',
+							width: 240,
+							height: 52,
+							color: '#565D6DFF'
+						}}
+						type='submit'
+						startIcon={<Groups />}
+						onClick={handleClickCoordenacao}
+					>
+						Coordenações
+					</Button>
 				</div>
 
-				<div className='body-classes'>
-					<h1>Turmas</h1>
+				<div>
+					<Button
+						variant='contained'
+						style={{
+							marginTop: 360,
+							width: 240,
+							height: 52,
+							backgroundColor: '#E4FFFDFF',
+							color: '#00BBAAFF'
+						}}
+						type='submit'
+						startIcon={<Create />}
+					>
+						Criar Turma
+					</Button>
+				</div>
+			</div>
 
+			<div className='body-classes'>
+				<h1>Turmas</h1>
+
+				{componenteAtual && (
 					<div className='cards'>
-						{classesData.advisorClasses.map((turma) => (
+						{componenteAtual.map((turma) => (
 							<Link
 								to='/professor/turma'
 								className='itens'
@@ -134,9 +153,9 @@ const ProfessorClasses = () => {
 							</Link>
 						))}
 					</div>
-				</div>
+				)}
 			</div>
-		)
+		</div>
 	)
 }
 
