@@ -6,12 +6,17 @@ import ChangePassword from './containers/ChangePassword'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
 import ViewClass from './containers/Advisor/ViewClass'
+import ReviewsLinker from './containers/ReviewsLinker'
 
 const Routes = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
 				<Route component={Login} path='/' exact />
+				<Route
+					component={ReviewsLinker}
+					path='/professor/coordenacao/associarrevisores'
+				/>
 				<Route
 					component={() => (
 						<div>
