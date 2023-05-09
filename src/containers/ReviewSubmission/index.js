@@ -41,7 +41,10 @@ const ReviewSubmission = () => {
 
 	const submitReview = async (reviewData) => {
 		try {
-			const { data } = await reviewSubmission(1, reviewData)
+			const { data } = await reviewSubmission(
+				localStorage.getItem('reviewId'),
+				reviewData
+			)
 			console.log(data)
 			console.log('data do volcan acima')
 			if (data !== 1) throw new Error('Erro ao enviar revisão')

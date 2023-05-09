@@ -25,8 +25,9 @@ function createData(data) {
 	let status = data.status
 	let id = data.id
 	let link = data.filePath
+	let reviewId = data.reviews[data.reviews.length - 1].id
 
-	return { titulo, autor, dataenvio, status, id, link }
+	return { titulo, autor, dataenvio, status, id, link, reviewId }
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -329,7 +330,12 @@ const AdvisorClassTable = ({ data }) => {
 											</TableCell>
 											<TableCell align='left'>
 												{row.status === 'Pendente' ? (
-													<Link to='/professor/revisor/revisarproposta'>
+													<Link
+														to='/professor/revisor/revisarproposta'
+														onClick={() => {
+															localStorage.setItem('reviewId', row.reviewId)
+														}}
+													>
 														Revisar
 													</Link>
 												) : (
