@@ -11,6 +11,13 @@
     width: 80%;
 }
 
+.reviews-linker-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .reviewer-selector-container {
     display: flex;
     flex-direction: row;

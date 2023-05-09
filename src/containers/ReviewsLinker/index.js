@@ -14,7 +14,7 @@ import {
 	TableRow,
 	TableCell
 } from '@material-ui/core'
-import { Create, Check, Close } from '@mui/icons-material'
+import { Create, Check, Close, ArrowBack } from '@mui/icons-material'
 import { useHistory } from 'react-router-dom'
 import { Header } from '../../components'
 
@@ -105,6 +105,8 @@ const ReviewerSelector = ({ id, professorsList, linkedProfessors }) => {
 }
 
 const ReviewsLinker = () => {
+	const history = useHistory()
+
 	const [proposalsList, setProposalsList] = useState([])
 	const [professorsList, setProfessorsList] = useState([])
 
@@ -135,7 +137,12 @@ const ReviewsLinker = () => {
 		<div className='reviews-linker-container'>
 			<Header />
 			<div className='reviews-linker-content'>
-				<h2>Propostas da turma xxxx</h2>
+				<div className='reviews-linker-header'>
+					<IconButton onClick={() => history.push('/professor')}>
+						<ArrowBack />
+					</IconButton>
+					<h2>Propostas da turma xxxx</h2>
+				</div>
 				<TableContainer>
 					<Table>
 						<TableHead>
