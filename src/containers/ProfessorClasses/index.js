@@ -9,7 +9,7 @@ import {
 	CoordinatorClassesContainer
 } from '../../components'
 import { professorsClassesRequest } from '../../services'
-
+import { format } from 'date-fns'
 const ProfessorClasses = () => {
 	const [componenteAtual, setComponenteAtual] = useState('orientacao')
 	const [classesData, setClassesData] = useState(null)
@@ -115,9 +115,21 @@ const ProfessorClasses = () => {
 								onClick={localStorage.setItem('classId', turma.id)}
 							>
 								<h3>{turma.name}</h3>
+								<span className='item-datas'>
+									<p>
+										Inicio: {format(new Date(turma.startDate), 'dd/MM/yyyy')}
+									</p>
+
+									<p>Fim: {format(new Date(turma.endDate), 'dd/MM/yyyy')}</p>
+								</span>
 
 								<span className='item-status'>
-									Status: <p>Ativa</p>
+									Status:{' '}
+									{new Date() < new Date(turma.endDate) ? (
+										<p className='status-ativa'>Ativa</p>
+									) : (
+										<p className='status-finalizada'>Finalizada</p>
+									)}
 								</span>
 							</Link>
 						))}

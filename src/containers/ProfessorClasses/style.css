@@ -65,24 +65,37 @@
 	width: 395px;
 	height: 145px;
 	margin: 0 40px 0 80px;
-	background-color: #ffffffff;
-	box-shadow: 0px 0px 1.5px #171a1f, 0px 0px 2px #171a1f;
+	background: linear-gradient(green 40%, #ffffff 40%);
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5), 4px 4px 8px 1px rgba(0, 0, 0, 0.5);
 	border-radius: 6px;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	padding: 1rem;
 	margin-top: 3.5rem;
 }
 
 .container-class .itens h3 {
-	color: #171a1fff;
+	color: white;
 	font-weight: bold;
 	font-size: 26px;
-	line-height: 30px;
+	line-height: 3px;
 	text-transform: uppercase;
+	margin-top: 0.8rem;
 }
 
-.container-class .itens span {
+.container-class .itens .item-datas {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.container-class .itens .item-datas p {
+	margin-top: 1.2rem;
+	color: black;
+}
+
+.container-class .itens .item-status {
 	display: flex;
 	flex-direction: row;
 	color: #171a1fff;
@@ -90,10 +103,16 @@
 	font-size: 18px;
 }
 
-.container-class .itens span p {
-	color: green;
+.container-class .itens .item-status p {
 	margin-left: 0.25rem;
 	font-weight: 600;
 	font-size: 18px;
 	text-decoration: underline;
+}
+
+.container-class .itens .item-status .status-ativa {
+	color: green;
+}
+.container-class .itens .item-status .status-finalizada {
+	color: darkred;
 }
