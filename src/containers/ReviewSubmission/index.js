@@ -16,18 +16,19 @@ import { reviewSubmission } from '../../services'
 
 const ReviewSubmission = () => {
 	const { handleSubmit } = useForm()
-
+	const history = useHistory()
 	const [formData, setFormData] = useState({})
 
 	const onSubmit = () => {
-		// localStorage.getItem('currentReviewId')
+		localStorage.getItem('currentReviewId')
 		try {
 			submitReview(formData)
+			console.log(formData)
 		} catch (error) {
 			console.log(error)
 		} finally {
 			localStorage.removeItem('currentReviewId')
-			// history.push('/')
+			history.push('/professor/revisor')
 		}
 	}
 
@@ -41,6 +42,8 @@ const ReviewSubmission = () => {
 	const submitReview = async (reviewData) => {
 		try {
 			const { data } = await reviewSubmission(1, reviewData)
+			console.log(data)
+			console.log('data do volcan acima')
 			if (data !== 1) throw new Error('Erro ao enviar revisão')
 		} catch (error) {
 			console.log(error)
@@ -259,9 +262,9 @@ const ReviewSubmission = () => {
 								backgroundColor: '#E4FFFDFF',
 								color: '#00BBAAFF'
 							}}
-							// onClick={() => {
-							// 	history.push('/')
-							// }}
+							onClick={() => {
+								history.push('/professor/revisor')
+							}}
 						>
 							Cancelar
 						</Button>

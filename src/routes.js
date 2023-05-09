@@ -6,12 +6,10 @@ import ChangePassword from './containers/ChangePassword'
 import ProfessorClasses from './containers/ProfessorClasses'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
-import ViewClass from './containers/Advisor/ViewClass'
 import ReviewSubmission from './containers/ReviewSubmission'
-
 import ReviewsLinker from './containers/ReviewsLinker'
-
 import ViewClass from './containers/ViewClass'
+
 const Routes = () => {
 	return (
 		<BrowserRouter>
@@ -25,9 +23,12 @@ const Routes = () => {
 				<Route component={ViewRevision} path='/verrevisao' />
 				<Route component={ChangePassword} path='/changepassword' />
 				<Route component={ProfessorClasses} path='/professor' exact />
-				<Route component={ViewClass} path='/professor/:role' />
+				<Route component={ViewClass} path='/professor/:role' exact />
 				<Route component={Submission} path='/proposta/submissao' />
-				<Route component={ReviewSubmission} path='/proposta/revisao' />
+				<Route
+					component={ReviewSubmission}
+					path='/professor/revisor/revisarproposta'
+				/>
 			</Switch>
 		</BrowserRouter>
 	)

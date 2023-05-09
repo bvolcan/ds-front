@@ -328,7 +328,13 @@ const AdvisorClassTable = ({ data }) => {
 												</a>
 											</TableCell>
 											<TableCell align='left'>
-												<Link to={`verrevisao/?proposalId=${row.id}`}>Ver</Link>
+												{row.status === 'Pendente' ? (
+													<Link to='/professor/revisor/revisarproposta'>
+														Revisar
+													</Link>
+												) : (
+													<Link to='/professor/revisor/xxx'>Ver</Link>
+												)}
 											</TableCell>
 										</TableRow>
 									)
