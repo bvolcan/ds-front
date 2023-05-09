@@ -11,6 +11,10 @@
     width: 80%;
 }
 
+.reviews-linker-content .MuiTableContainer-root {
+    max-height: 75vh;
+}
+
 .reviews-linker-header {
     display: flex;
     flex-direction: row;

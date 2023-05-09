@@ -142,7 +142,7 @@ const ReviewsLinker = () => {
 					<h2>Propostas da turma xxxx</h2>
 				</div>
 				<TableContainer>
-					<Table>
+					<Table stickyHeader>
 						<TableHead>
 							<TableRow>
 								<TableCell>Proposta</TableCell>
