@@ -154,9 +154,10 @@ const ReviewsLinker = () => {
 							{proposalsList !== [] &&
 								proposalsList.map((proposal, index) => {
 									const reviewers =
-										proposal.reviews && proposalsList === []
+										proposalsList === []
 											? []
-											: proposal.reviews.map((review) => {
+											: proposal.reviews &&
+											  proposal.reviews.map((review) => {
 													const matchingProfessor = professorsList.find(
 														(professor) =>
 															professor.email === review.reviewer.userEmail
