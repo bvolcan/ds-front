@@ -6,6 +6,8 @@ import ChangePassword from './containers/ChangePassword'
 import ProfessorClasses from './containers/ProfessorClasses'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
+import ViewClass from './containers/Advisor/ViewClass'
+import ReviewSubmission from './containers/ReviewSubmission'
 
 import ReviewsLinker from './containers/ReviewsLinker'
 
@@ -25,6 +27,7 @@ const Routes = () => {
 				<Route component={ProfessorClasses} path='/professor' exact />
 				<Route component={ViewClass} path='/professor/:role' />
 				<Route component={Submission} path='/proposta/submissao' />
+				<Route component={ReviewSubmission} path='/proposta/revisao' />
 			</Switch>
 		</BrowserRouter>
 	)
