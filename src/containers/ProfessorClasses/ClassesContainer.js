@@ -6,11 +6,11 @@ import { Edit, InsertLink } from '@mui/icons-material'
 import { useHistory } from 'react-router-dom'
 import './style.css'
 
-const ClassesContainer = ({ turma, isCoordinator }) => {
+const ClassesContainer = ({ turma, isCoordinator, role }) => {
 	const history = useHistory()
 
-	console.log(turma)
-	console.log(isCoordinator)
+	// console.log(turma)
+	// console.log(isCoordinator)
 	return (
 		<div className='single-class'>
 			{isCoordinator ? (
@@ -23,8 +23,9 @@ const ClassesContainer = ({ turma, isCoordinator }) => {
 							type='submit'
 							startIcon={<Edit />}
 							onClick={() => {
+								localStorage.setItem('className', turma.name)
 								localStorage.setItem('classId', turma.id)
-								history.push('/professor/turma/editar')
+								history.push('/professor/coordenacao/editarturma')
 							}}
 						>
 							Editar
@@ -34,8 +35,9 @@ const ClassesContainer = ({ turma, isCoordinator }) => {
 							type='submit'
 							startIcon={<InsertLink />}
 							onClick={() => {
+								localStorage.setItem('className', turma.name)
 								localStorage.setItem('classId', turma.id)
-								history.push('/professor/turma/linkrevisores')
+								history.push('/professor/coordenacao/associarrevisores')
 							}}
 						>
 							Linkar Revisores
@@ -44,9 +46,14 @@ const ClassesContainer = ({ turma, isCoordinator }) => {
 				</div>
 			) : (
 				<Link
-					to='/professor/turma'
+					to={`/professor/${
+						role === 'reviewerClasses' ? 'revisor' : 'orientador'
+					}`}
 					className='itens normal'
-					onClick={localStorage.setItem('classId', turma.id)}
+					onClick={() => {
+						localStorage.setItem('className', turma.name)
+						localStorage.setItem('classId', turma.id)
+					}}
 				>
 					<h3>{turma.name}</h3>
 					<span className='item-datas'>

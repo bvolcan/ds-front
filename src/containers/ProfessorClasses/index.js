@@ -10,12 +10,13 @@ const ProfessorClasses = () => {
 	const [classesData, setClassesData] = useState(null)
 	const [componenteAtual, setComponenteAtual] = useState([])
 	const [isCoordinator, setIsCoordinator] = useState(false)
+	const [actualRole, setActualRole] = useState('advisorClasses')
 
 	useEffect(() => {
 		const getClassesData = async () => {
 			try {
 				const { data } = await professorsClassesRequest()
-				console.log(data)
+				// console.log(data)
 				setClassesData(data)
 			} catch (error) {
 				console.log(error)
@@ -31,8 +32,9 @@ const ProfessorClasses = () => {
 	const handleRolesClick = (role) => {
 		setComponenteAtual(classesData[role])
 		setIsCoordinator(role === 'coordinatorClasses')
+		setActualRole(role)
 	}
-
+	console.log(componenteAtual)
 	return (
 		<div className='container-class'>
 			<Header />
@@ -111,11 +113,19 @@ const ProfessorClasses = () => {
 			<div className='body-classes'>
 				<h1>Turmas</h1>
 
-				{componenteAtual && (
+				{componenteAtual.length > 0 ? (
 					<div className='cards'>
 						{componenteAtual.map((turma) => (
-							<ClassesContainer turma={turma} isCoordinator={isCoordinator} />
+							<ClassesContainer
+								turma={turma}
+								isCoordinator={isCoordinator}
+								role={actualRole}
+							/>
 						))}
+					</div>
+				) : (
+					<div className='cards vazio'>
+						<h3>Você ainda não tem nenhuma turma aqui.</h3>
 					</div>
 				)}
 			</div>

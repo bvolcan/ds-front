@@ -18,14 +18,6 @@
 	margin-bottom: 15px;
 }
 
-.submission-form span {
-	font-family: 'Mulish', sans-serif;
-}
-
-.submission-form h4 {
-	font-family: 'Mulish', sans-serif;
-}
-
 .form-header {
 	display: flex;
 	flex-direction: column;

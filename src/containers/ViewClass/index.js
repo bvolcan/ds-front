@@ -1,37 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
-import EnhancedTable from '../../components/EnhancedTable'
 import { Header } from '../../components'
-import { professorsClassesRequest } from '../../services'
+import { reviewerClassRequest, advisorClassRequest } from '../../services'
+import AdvisorClassTable from '../../components/AdvisorClassTable'
+import { useParams } from 'react-router-dom'
 
-let turma = 'blabla'
 const ViewClass = () => {
 	const [classesData, setClassesData] = useState(null)
+	const { role } = useParams()
 
 	useEffect(() => {
 		const getClassesData = async () => {
 			try {
-				const { data } = await professorsClassesRequest()
+				const { data } =
+					role === 'revisor'
+						? await reviewerClassRequest(localStorage.getItem('classId'))
+						: await advisorClassRequest(localStorage.getItem('classId'))
 				console.log(data)
 				setClassesData(data)
 			} catch (error) {
 				console.log(error)
 			}
 		}
+		console.log(role)
 		getClassesData()
 	}, [])
+
 	console.log(classesData)
+	console.log('oi')
+
 	return (
 		<div className='container'>
 			<Header />
 			<div className='table'>
 				<div className='table-header'>
 					<div className='table-header-text'>
-						<h3>Propostas da turma {turma}</h3>
+						<h3>
+							Propostas da turma{' '}
+							{localStorage.getItem('className').toUpperCase()}
+						</h3>
 					</div>
 				</div>
 				<div className='submissions-table'>
-					{/* <EnhancedTable data={classesData.proposals} /> */}
+					{classesData && <AdvisorClassTable data={classesData} />}
 				</div>
 			</div>
 		</div>

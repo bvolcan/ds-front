@@ -1,6 +1,5 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { alpha } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -10,26 +9,24 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
-import Checkbox from '@mui/material/Checkbox'
-import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
-import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
+import { format } from 'date-fns'
 import { visuallyHidden } from '@mui/utils'
 import './style.css'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function createData(data) {
 	let titulo = data.title
-	let turma = data.class.name
-	let orientador = data.advisorEmail
-	let status = 'Pendente'
+	let autor = data.student.user.name
+	let dataenvio = format(new Date(data.createdAt), 'dd/MM/yyyy')
+	let status = data.status
+	let id = data.id
+	let link = data.filePath
 
-	return { titulo, turma, orientador, status }
+	return { titulo, autor, dataenvio, status, id, link }
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -68,16 +65,16 @@ const headCells = [
 		label: 'Título'
 	},
 	{
-		id: 'turma',
+		id: 'autor',
 		numeric: false,
 		disablePadding: false,
-		label: 'Turma'
+		label: 'Autor'
 	},
 	{
-		id: 'orientador',
+		id: 'dataenvio',
 		numeric: false,
 		disablePadding: false,
-		label: 'Orientador'
+		label: 'Data de envio'
 	},
 	{
 		id: 'status',
@@ -103,15 +100,8 @@ const DEFAULT_ORDER = 'asc'
 const DEFAULT_ORDER_BY = 'status'
 const DEFAULT_ROWS_PER_PAGE = 5
 
-function AdvisorClassTableHead(props) {
-	const {
-		onSelectAllClick,
-		order,
-		orderBy,
-		numSelected,
-		rowCount,
-		onRequestSort
-	} = props
+function EnhancedTableHead(props) {
+	const { order, orderBy, onRequestSort } = props
 	const createSortHandler = (newOrderBy) => (event) => {
 		onRequestSort(event, newOrderBy)
 	}
@@ -119,23 +109,13 @@ function AdvisorClassTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow>
-				<TableCell padding='checkbox'>
-					{/* <Checkbox
-						color='primary'
-						indeterminate={numSelected > 0 && numSelected < rowCount}
-						checked={rowCount > 0 && numSelected === rowCount}
-						onChange={onSelectAllClick}
-						inputProps={{
-							'aria-label': 'select all desserts'
-						}}
-					/> */}
-				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'normal'}
 						sortDirection={orderBy === headCell.id ? order : false}
+						// sx={{ pl: 4 }}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -156,7 +136,7 @@ function AdvisorClassTableHead(props) {
 	)
 }
 
-AdvisorClassTableHead.propTypes = {
+EnhancedTableHead.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 	onRequestSort: PropTypes.func.isRequired,
 	onSelectAllClick: PropTypes.func.isRequired,
@@ -165,65 +145,7 @@ AdvisorClassTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired
 }
 
-function AdvisorClassTableToolbar(props) {
-	const { numSelected } = props
-
-	return (
-		<Toolbar
-			sx={{
-				pl: { sm: 2 },
-				pr: { xs: 1, sm: 1 },
-				...(numSelected > 0 && {
-					bgcolor: (theme) =>
-						alpha(
-							theme.palette.primary.main,
-							theme.palette.action.activatedOpacity
-						)
-				})
-			}}
-		>
-			{numSelected > 0 ? (
-				<Typography
-					sx={{ flex: '1 1 100%' }}
-					color='inherit'
-					variant='subtitle1'
-					component='div'
-				>
-					{numSelected} selected
-				</Typography>
-			) : (
-				<Typography
-					sx={{ flex: '1 1 100%' }}
-					variant='h6'
-					id='tableTitle'
-					component='div'
-				>
-					Nutrition
-				</Typography>
-			)}
-
-			{numSelected > 0 ? (
-				<Tooltip title='Delete'>
-					<IconButton>
-						<DeleteIcon />
-					</IconButton>
-				</Tooltip>
-			) : (
-				<Tooltip title='Filter list'>
-					<IconButton>
-						<FilterListIcon />
-					</IconButton>
-				</Tooltip>
-			)}
-		</Toolbar>
-	)
-}
-
-AdvisorClassTableToolbar.propTypes = {
-	numSelected: PropTypes.number.isRequired
-}
-
-const AdvisorClassTable = (data) => {
+const AdvisorClassTable = ({ data }) => {
 	const [order, setOrder] = React.useState(DEFAULT_ORDER)
 	const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY)
 	const [selected, setSelected] = React.useState([])
@@ -232,11 +154,21 @@ const AdvisorClassTable = (data) => {
 	const [visibleRows, setVisibleRows] = React.useState(null)
 	const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE)
 	const [paddingHeight, setPaddingHeight] = React.useState(0)
-	const [rows, setRows] = React.useState(
-		data?.data.map((proposal, i) => createData(proposal))
-	)
+	const [rows, setRows] = React.useState([])
+	useEffect(() => {
+		const getTableData = async () => {
+			try {
+				setRows(data?.map((proposal, i) => createData(proposal)))
+			} catch (error) {
+				console.log(error)
+			}
+			data?.map((proposal, i) => createData(proposal))
+		}
+		getTableData()
+	}, [])
 
 	console.log(data)
+	console.log('data acima rows abaixo')
 	console.log(rows)
 
 	React.useEffect(() => {
@@ -355,14 +287,13 @@ const AdvisorClassTable = (data) => {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
-				{/* <AdvisorClassTableToolbar numSelected={selected.length} /> */}
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby='tableTitle'
 						size={dense ? 'small' : 'medium'}
 					>
-						<AdvisorClassTableHead
+						<EnhancedTableHead
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
@@ -371,52 +302,50 @@ const AdvisorClassTable = (data) => {
 							rowCount={rows.length}
 						/>
 						<TableBody>
-							{visibleRows
-								? visibleRows.map((row, index) => {
-										const isItemSelected = isSelected(row.titulo)
-										const labelId = `enhanced-table-checkbox-${index}`
-
-										return (
-											<TableRow
-												hover
-												onClick={(event) => handleClick(event, row.titulo)}
-												role='checkbox'
-												aria-checked={isItemSelected}
-												tabIndex={-1}
-												key={row.titulo}
-												selected={isItemSelected}
-												sx={{ cursor: 'pointer' }}
+							{rows.length > 0 ? (
+								rows?.map((row, index) => {
+									return (
+										<TableRow hover key={row.titulo + index}>
+											<TableCell
+												component='th'
+												scope='row'
+												padding='normal'
+												// sx={{ pl: 4 }}
+												align='left'
 											>
-												<TableCell padding='checkbox'>
-													{/* <Checkbox
-														color='primary'
-														checked={isItemSelected}
-														inputProps={{
-															'aria-labelledby': labelId
-														}}
-													/> */}
-												</TableCell>
-												<TableCell
-													component='th'
-													id={labelId}
-													scope='row'
-													padding='normal'
+												{row.titulo}
+											</TableCell>
+											<TableCell align='left'>{row.autor}</TableCell>
+											<TableCell align='left'>{row.dataenvio}</TableCell>
+											<TableCell align='left'>{row.status}</TableCell>
+											<TableCell align='left'>
+												<a
+													href={`${row.link}`}
+													target='_blank'
+													rel='noopener noreferrer'
 												>
-													{row.titulo}
-												</TableCell>
-												<TableCell align='left'>{row.turma}</TableCell>
-												<TableCell align='left'>{row.orientador}</TableCell>
-												<TableCell align='left'>{row.status}</TableCell>
-												<TableCell align='left'>
-													<a href='verProposta'>Ver</a>
-												</TableCell>
-												<TableCell align='left'>
-													<a href='verRevisao'>Ver</a>
-												</TableCell>
-											</TableRow>
-										)
-								  })
-								: null}
+													PDF
+												</a>
+											</TableCell>
+											<TableCell align='left'>
+												<Link to={`verrevisao/?proposalId=${row.id}`}>Ver</Link>
+											</TableCell>
+										</TableRow>
+									)
+								})
+							) : (
+								<TableRow key='vazio'>
+									<TableCell
+										component='th'
+										scope='row'
+										padding='normal'
+										align='center'
+										colSpan={6}
+									>
+										Ainda não tem nenhuma proposta aqui.
+									</TableCell>
+								</TableRow>
+							)}
 							{paddingHeight > 0 && (
 								<TableRow
 									style={{
@@ -429,21 +358,7 @@ const AdvisorClassTable = (data) => {
 						</TableBody>
 					</Table>
 				</TableContainer>
-				<TablePagination
-					rowsPerPageOptions={[5, 10, 25]}
-					component='div'
-					count={rows.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-					className='table-pagination'
-				/>
 			</Paper>
-			<FormControlLabel
-				control={<Switch checked={dense} onChange={handleChangeDense} />}
-				label='Lista densa'
-			/>
 		</Box>
 	)
 }

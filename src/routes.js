@@ -15,8 +15,8 @@ const Routes = () => {
 				<Route component={StudentList} path='/aluno' />
 				<Route component={ViewRevision} path='/verrevisao' />
 				<Route component={ChangePassword} path='/changepassword' />
-				<Route component={ProfessorClasses} path='/professor' />
-				<Route component={ViewClass} path='/professor/turma' />
+				<Route component={ProfessorClasses} path='/professor' exact />
+				<Route component={ViewClass} path='/professor/:role' />
 				<Route component={Submission} path='/proposta/submissao' />
 			</Switch>
 		</BrowserRouter>
