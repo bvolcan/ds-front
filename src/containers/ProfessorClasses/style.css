@@ -16,16 +16,40 @@
 	width: 21rem;
 }
 
-.container-class .menu {
+.container-class .menu-lateral .menu {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	height: 260px;
 	margin-top: 70px;
 	justify-content: space-around;
+	width: 100%;
 }
 
-.container-class .menu .MuiButton-root {
+.container-class .menu-lateral .menu .button {
+	font-size: 16px;
+	font-weight: bold;
+	align-items: center;
+	width: 100%;
+	height: 3.25rem;
+	color: #565d6dff;
+	transition: 0.3s;
+	padding-left: 1.25rem;
+}
+
+.container-class .menu-lateral .menu .active-button {
+	font-size: 18px;
+	font-weight: bold;
+	align-items: center;
+	width: 100%;
+	height: 3.25rem;
+	color: #00bbaaff;
+	background: rgba(0, 187, 170, 0.1);
+	transition: 0.3s;
+	padding-left: 2rem;
+}
+
+.container-class .menu-lateral .menu .MuiButton-root {
 	font-family: 'Poppins', sans-serif;
 	justify-content: left;
 	align-items: center;

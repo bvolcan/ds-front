@@ -94,6 +94,7 @@ const AdvisorClassTable = ({ data }) => {
 		}
 		getTableData()
 	}, [data])
+	console.log(data)
 
 	return (
 		<Box sx={{ width: '100%' }}>
@@ -141,7 +142,9 @@ const AdvisorClassTable = ({ data }) => {
 														Revisar
 													</Link>
 												) : (
-													<Link to='/professor/revisor/xxx'>Ver</Link>
+													<Link to={`/verrevisao/?proposalId=${row.id}`}>
+														Ver
+													</Link>
 												)}
 											</TableCell>
 										</TableRow>

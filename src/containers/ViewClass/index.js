@@ -4,10 +4,14 @@ import { Header } from '../../components'
 import { reviewerClassRequest, advisorClassRequest } from '../../services'
 import AdvisorClassTable from '../../components/AdvisorClassTable'
 import { useParams } from 'react-router-dom'
+import { IconButton } from '@mui/material'
+import { ArrowBack } from '@mui/icons-material'
+import { useHistory } from 'react-router-dom'
 
 const ViewClass = () => {
 	const [classesData, setClassesData] = useState(null)
 	const { role } = useParams()
+	const history = useHistory()
 
 	useEffect(() => {
 		const getClassesData = async () => {
@@ -22,7 +26,7 @@ const ViewClass = () => {
 			}
 		}
 		getClassesData()
-	}, [])
+	}, [role])
 
 	return (
 		<div className='container'>
@@ -30,6 +34,9 @@ const ViewClass = () => {
 			<div className='table'>
 				<div className='table-header'>
 					<div className='table-header-text'>
+						<IconButton onClick={() => history.push('/professor')}>
+							<ArrowBack />
+						</IconButton>
 						<h3>
 							Propostas da turma{' '}
 							{localStorage.getItem('className').toUpperCase()}

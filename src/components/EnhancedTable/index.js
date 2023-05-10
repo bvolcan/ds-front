@@ -133,7 +133,9 @@ const EnhancedTable = ({ data }) => {
 												</a>
 											</TableCell>
 											<TableCell align='left'>
-												<Link to={`verrevisao/?proposalId=${row.id}`}>Ver</Link>
+												<Link to={`/verrevisao/?proposalId=${row.id}`}>
+													Ver
+												</Link>
 											</TableCell>
 										</TableRow>
 									)
