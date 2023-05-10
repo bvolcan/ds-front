@@ -138,7 +138,9 @@ const ReviewsLinker = () => {
 					<IconButton onClick={() => history.push('/professor')}>
 						<ArrowBack />
 					</IconButton>
-					<h2>Propostas da turma xxxx</h2>
+					<h2>
+						Propostas da turma {localStorage.getItem('className').toUpperCase()}
+					</h2>
 				</div>
 				<TableContainer>
 					<Table stickyHeader>
