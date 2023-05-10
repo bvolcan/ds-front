@@ -1,34 +1,43 @@
 .reviews-linker-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100vw;
-    height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100vw;
+	height: 100vh;
 }
 
 .reviews-linker-content {
-    width: 80%;
+	width: 80%;
 }
 
 .reviews-linker-content .MuiTableContainer-root {
-    max-height: 75vh;
+	max-height: 75vh;
 }
 
 .reviews-linker-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.reviews-linker-header h2 {
+	margin-left: 1rem;
+}
+
+.reviews-linker-header button {
+	padding: 0.75rem;
+	border-radius: 50%;
 }
 
 .reviewer-selector-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
 }
 
 .MuiMenu-list {
-    max-height: 40vh;
+	max-height: 40vh;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import { Button } from '@mui/material'
-import { Dashboard, Folder, Groups, Create, Class } from '@mui/icons-material'
+import { Dashboard, Folder, Groups, Create } from '@mui/icons-material'
 import { Header } from '../../components'
 import { professorsClassesRequest } from '../../services'
 import ClassesContainer from './ClassesContainer'
@@ -26,7 +26,7 @@ const ProfessorClasses = () => {
 
 	useEffect(() => {
 		if (classesData) handleRolesClick('advisorClasses')
-	}, classesData)
+	}, [classesData])
 
 	const handleRolesClick = (role) => {
 		setComponenteAtual(classesData[role])
@@ -40,15 +40,10 @@ const ProfessorClasses = () => {
 			<div className='menu-lateral'>
 				<div className='menu'>
 					<Button
+						className={
+							actualRole === 'advisorClasses' ? 'active-button' : 'button'
+						}
 						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#00BBAAFF'
-						}}
 						type='submit'
 						startIcon={<Dashboard />}
 						onClick={() => handleRolesClick('advisorClasses')}
@@ -57,15 +52,10 @@ const ProfessorClasses = () => {
 					</Button>
 
 					<Button
+						className={
+							actualRole === 'reviewerClasses' ? 'active-button' : 'button'
+						}
 						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#565D6DFF'
-						}}
 						type='submit'
 						startIcon={<Folder />}
 						onClick={() => handleRolesClick('reviewerClasses')}
@@ -74,15 +64,10 @@ const ProfessorClasses = () => {
 					</Button>
 
 					<Button
+						className={
+							actualRole === 'coordinatorClasses' ? 'active-button' : 'button'
+						}
 						variant='text'
-						style={{
-							fontSize: 16,
-							fontWeight: 'bold',
-							alignItems: 'center',
-							width: 240,
-							height: 52,
-							color: '#565D6DFF'
-						}}
 						type='submit'
 						startIcon={<Groups />}
 						onClick={() => handleRolesClick('coordinatorClasses')}

@@ -16,16 +16,40 @@
 	width: 21rem;
 }
 
-.container-class .menu {
+.container-class .menu-lateral .menu {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	height: 260px;
 	margin-top: 70px;
 	justify-content: space-around;
+	width: 100%;
 }
 
-.container-class .menu .MuiButton-root {
+.container-class .menu-lateral .menu .button {
+	font-size: 16px;
+	font-weight: bold;
+	align-items: center;
+	width: 100%;
+	height: 3.25rem;
+	color: #565d6dff;
+	transition: 0.3s;
+	padding-left: 1.25rem;
+}
+
+.container-class .menu-lateral .menu .active-button {
+	font-size: 18px;
+	font-weight: bold;
+	align-items: center;
+	width: 100%;
+	height: 3.25rem;
+	color: #00bbaaff;
+	background: rgba(0, 187, 170, 0.1);
+	transition: 0.3s;
+	padding-left: 2rem;
+}
+
+.container-class .menu-lateral .menu .MuiButton-root {
 	font-family: 'Poppins', sans-serif;
 	justify-content: left;
 	align-items: center;
@@ -35,7 +59,7 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	justify-content: start;
+	justify-content: flex-start;
 	width: 100%;
 	background: #f3f4f6ff;
 }
@@ -50,8 +74,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	/* height: 100%; */
-	align-items: start;
+	align-items: flex-start;
 	justify-content: center;
 }
 
@@ -62,7 +85,7 @@
 .container-class .cards.vazio {
 	display: flex;
 	justify-content: center;
-	align-items: start;
+	align-items: flex-start;
 }
 
 .container-class .cards.vazio h3 {
@@ -74,8 +97,8 @@
 .container-class .itens {
 	display: flex;
 	flex-direction: column;
-	width: 395px;
-	height: 145px;
+	width: 25rem;
+	height: 10rem;
 	margin: 2rem;
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5), 4px 4px 8px 1px rgba(0, 0, 0, 0.5);
 	border-radius: 6px;
@@ -152,4 +175,8 @@
 	width: fit-content;
 	height: 2rem;
 	font-weight: 600;
+}
+
+.container-class .itens .item-evaluation-date {
+	margin-top: 0.5rem;
 }

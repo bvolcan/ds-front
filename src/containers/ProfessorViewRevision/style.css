@@ -12,7 +12,7 @@
 	align-items: center;
 	margin-bottom: 2rem;
 	position: fixed;
-	top: 5rem;
+	top: 1.5rem;
 }
 
 .view-revision-title h1 {
@@ -57,7 +57,7 @@
 	border-radius: 10px;
 }
 
-.view-revision .back-button .MuiButton-root {
+.view-revision .back-button a {
 	font-size: 18px;
 	line-height: 28px;
 	color: #00bbaaff;
@@ -70,12 +70,12 @@
 	text-decoration: none;
 }
 
-.view-revision .back-button .MuiButton-root:hover {
+.view-revision .back-button a:hover {
 	color: #00bbaaff;
 	background: #9afff7ff;
 }
 
-.view-revision .back-button .MuiButton-root:hover:active {
+.view-revision .back-button a:hover:active {
 	color: #00bbaaff;
 	background: #00e1cfff;
 }

@@ -4,9 +4,12 @@ import EnhancedTable from '../../../components/EnhancedTable'
 import { Header } from '../../../components'
 import { studentRequest } from '../../../services'
 import { Link } from 'react-router-dom'
+import { Button } from '@mui/material'
+import { useHistory } from 'react-router-dom'
 
 const StudentList = () => {
 	const [studentData, setStudentData] = useState(null)
+	const history = useHistory()
 
 	useEffect(() => {
 		const getStudentData = async () => {
@@ -39,7 +42,15 @@ const StudentList = () => {
 							<h3>Suas submissões</h3>
 						</div>
 						<div className='table-header-button'>
-							<Link to={'/proposta/submissao'}>Nova Submissão</Link>
+							<Button
+								variant='outlined'
+								onClick={() => {
+									history.push('/proposta/submissao')
+								}}
+								disabled={studentData.activeClass.length < 1}
+							>
+								Nova Submissão
+							</Button>
 						</div>
 					</div>
 					<div className='submissions-table'>
