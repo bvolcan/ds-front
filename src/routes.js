@@ -3,9 +3,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from './containers/Login'
 import Submission from './containers/Submission'
 import ChangePassword from './containers/ChangePassword'
+import ProfessorClasses from './containers/ProfessorClasses'
 import StudentList from './containers/Student/List'
 import ViewRevision from './containers/ViewRevision'
-import ViewClass from './containers/Advisor/ViewClass'
+import ReviewSubmission from './containers/ReviewSubmission'
+import ReviewsLinker from './containers/ReviewsLinker'
+import ViewClass from './containers/ViewClass'
 
 const Routes = () => {
 	return (
@@ -13,18 +16,19 @@ const Routes = () => {
 			<Switch>
 				<Route component={Login} path='/' exact />
 				<Route
-					component={() => (
-						<div>
-							<h1>Dashboard Professor</h1>
-						</div>
-					)}
-					path='/professor'
+					component={ReviewsLinker}
+					path='/professor/coordenacao/associarrevisores'
 				/>
 				<Route component={StudentList} path='/aluno' />
 				<Route component={ViewRevision} path='/verrevisao' />
-				<Route component={ViewClass} path='/advisorviewclass' />
 				<Route component={ChangePassword} path='/changepassword' />
+				<Route component={ProfessorClasses} path='/professor' exact />
+				<Route component={ViewClass} path='/professor/:role' exact />
 				<Route component={Submission} path='/proposta/submissao' />
+				<Route
+					component={ReviewSubmission}
+					path='/professor/revisor/revisarproposta'
+				/>
 			</Switch>
 		</BrowserRouter>
 	)

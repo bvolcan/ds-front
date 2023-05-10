@@ -1,0 +1,155 @@
+.container-class {
+	display: flex;
+	height: 100vh;
+}
+
+.container-class header {
+	position: absolute;
+}
+
+.container-class .menu-lateral {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	height: 100vh;
+	width: 21rem;
+}
+
+.container-class .menu {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 260px;
+	margin-top: 70px;
+	justify-content: space-around;
+}
+
+.container-class .menu .MuiButton-root {
+	font-family: 'Poppins', sans-serif;
+	justify-content: left;
+	align-items: center;
+}
+
+.container-class .body-classes {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: start;
+	width: 100%;
+	background: #f3f4f6ff;
+}
+
+.container-class .body-classes h1 {
+	font-size: 52px;
+	line-height: 74px;
+	margin-top: 56px;
+}
+
+.container-class .cards {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	/* height: 100%; */
+	align-items: start;
+	justify-content: center;
+}
+
+.container-class .cards a {
+	text-decoration: none;
+}
+
+.container-class .cards.vazio {
+	display: flex;
+	justify-content: center;
+	align-items: start;
+}
+
+.container-class .cards.vazio h3 {
+	font-size: 3rem;
+	margin-top: 6rem;
+	color: rgba(0, 0, 0, 0.25);
+}
+
+.container-class .itens {
+	display: flex;
+	flex-direction: column;
+	width: 395px;
+	height: 145px;
+	margin: 2rem;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5), 4px 4px 8px 1px rgba(0, 0, 0, 0.5);
+	border-radius: 6px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+}
+
+.container-class .itens.normal {
+	background: linear-gradient(green 40%, #ffffff 40%);
+}
+
+.container-class .itens.coordinator {
+	background: linear-gradient(grey 40%, #ffffff 40%);
+}
+
+.container-class .itens h3 {
+	color: white;
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 30px;
+	text-transform: uppercase;
+}
+
+.container-class .itens .item-datas {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.container-class .itens .item-datas p {
+	margin-top: 1.2rem;
+	color: black;
+}
+
+.container-class .itens .item-status {
+	display: flex;
+	flex-direction: row;
+	color: #171a1fff;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.container-class .itens .item-status p {
+	margin-left: 0.25rem;
+	font-weight: 600;
+	font-size: 18px;
+	text-decoration: underline;
+}
+
+.container-class .itens .item-status .status.ativa {
+	color: green;
+}
+.container-class .itens .item-status .status.finalizada {
+	color: darkred;
+}
+
+.container-class .itens .item-coordinator-menu {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.container-class .itens .item-coordinator-menu .MuiButton-root {
+	color: #00bbaaff;
+	border: solid 2px #00bbaaff;
+	border-radius: 6px;
+	padding: 0.2rem 0.8rem;
+	font-size: 16;
+	align-items: 'center';
+	width: fit-content;
+	height: 2rem;
+	font-weight: 600;
+}

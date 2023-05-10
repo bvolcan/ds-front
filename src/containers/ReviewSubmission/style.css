@@ -1,0 +1,65 @@
+.main-container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+} 
+
+.review-submission-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    max-height: fit-content;
+}
+
+.review-submission-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    height: 100%;
+    max-height: calc(100vh - 54px - 7rem);
+}
+
+.review-submission-form-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-right: 52px;
+}
+
+.review-submission-form-inputs div {
+    width: 100%;
+}
+
+.review-submission-form .buttons {
+    justify-content: center;
+}
+
+.review-submission-form-inputs .MuiFormControl-root {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 14px 0;
+    background-color: #F3F4F6FF;
+    border: 1px solid #BDC1CAFF;
+}
+
+.review-submission-form-inputs .MuiFormGroup-root {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-submission-form-inputs .MuiFormLabel-root {
+    margin-left: 3px;
+}
+
+.review-submission-form-inputs .MuiTextField-root {
+    border: none
+}

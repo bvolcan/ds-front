@@ -15,7 +15,6 @@ const ViewRevision = () => {
 		const getReviewsData = async () => {
 			try {
 				const { data } = await reviewsRequest(proposalId)
-				console.log(data)
 				setReviewsData(data)
 			} catch (error) {
 				console.log(error)
@@ -23,11 +22,6 @@ const ViewRevision = () => {
 		}
 		getReviewsData()
 	}, [])
-
-	console.log('proposal id abaixo')
-	console.log(proposalId)
-	console.log('reviews data abaixo')
-	console.log(reviewsData)
 
 	return (
 		reviewsData && (

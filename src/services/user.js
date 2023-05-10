@@ -9,3 +9,15 @@ export const reviewsRequest = (proposalId) =>
 	fetchClient.get(`/students/proposals/${proposalId}/reviews`)
 
 export const professorsRequest = () => fetchClient.get(`/professors`)
+
+export const linkProfessorsRequest = (proposalId, emailList) =>
+	fetchClient.post(`/coordinators/proposals/${proposalId}/reviewers`, emailList)
+
+export const professorsClassesRequest = () =>
+	fetchClient.get(`/professors/classes`)
+
+export const reviewerClassRequest = (classId) =>
+	fetchClient.get(`professors/classes/${classId}/proposals/reviews`)
+
+export const advisorClassRequest = (classId) =>
+	fetchClient.get(`professors/classes/${classId}/proposals/advises`)

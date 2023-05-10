@@ -12,7 +12,6 @@ const StudentList = () => {
 		const getStudentData = async () => {
 			try {
 				const { data } = await studentRequest()
-				console.log(data)
 				setStudentData(data)
 				localStorage.setItem('activeClassName', data.activeClass[0].name)
 			} catch (error) {
