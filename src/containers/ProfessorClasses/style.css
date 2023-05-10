@@ -97,8 +97,8 @@
 .container-class .itens {
 	display: flex;
 	flex-direction: column;
-	width: 395px;
-	height: 145px;
+	width: 25rem;
+	height: 10rem;
 	margin: 2rem;
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5), 4px 4px 8px 1px rgba(0, 0, 0, 0.5);
 	border-radius: 6px;
@@ -175,4 +175,8 @@
 	width: fit-content;
 	height: 2rem;
 	font-weight: 600;
+}
+
+.container-class .itens .item-evaluation-date {
+	margin-top: 0.5rem;
 }

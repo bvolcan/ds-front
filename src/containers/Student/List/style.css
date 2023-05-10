@@ -31,19 +31,21 @@
 	color: #171a1fff;
 }
 
-.table-header-button {
+.table-header-button .MuiButton-root {
 	background: #00bbaaff;
-	opacity: 1;
+	color: white;
 	border: none;
 	border-radius: 6px;
 	padding: 0.6rem 1.2rem;
+	transition: 0.2s;
 }
 
-.table-header-button:hover {
+.table-header-button .MuiButton-root:hover {
 	background: #00a99bff;
+	border: none;
 }
 
-.table-header-button a {
-	text-decoration: none;
-	color: #ffffffff;
+.table-header-button .MuiButton-root.Mui-disabled {
+	background: rgba(0, 169, 155, 0.24);
+	border: none;
 }

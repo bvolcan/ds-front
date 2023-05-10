@@ -8,13 +8,19 @@ import './style.css'
 
 const ClassesContainer = ({ turma, isCoordinator, role }) => {
 	const history = useHistory()
+	console.log(turma)
 
 	return (
 		<div className='single-class'>
 			{isCoordinator ? (
 				<div className='itens coordinator'>
 					<h3>{turma.name}</h3>
-
+					<span className='item-evaluation-date'>
+						<p>
+							Inicio das revisões:{' '}
+							{format(new Date(turma.evaluationStartDate), 'dd/MM/yyyy')}
+						</p>
+					</span>
 					<span className='item-coordinator-menu'>
 						<Button
 							variant='text'
