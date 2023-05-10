@@ -168,10 +168,6 @@ const AdvisorClassTable = ({ data }) => {
 		getTableData()
 	}, [])
 
-	console.log(data)
-	console.log('data acima rows abaixo')
-	console.log(rows)
-
 	React.useEffect(() => {
 		let rowsOnMount = stableSort(
 			rows,

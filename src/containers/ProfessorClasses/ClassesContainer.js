@@ -9,8 +9,6 @@ import './style.css'
 const ClassesContainer = ({ turma, isCoordinator, role }) => {
 	const history = useHistory()
 
-	// console.log(turma)
-	// console.log(isCoordinator)
 	return (
 		<div className='single-class'>
 			{isCoordinator ? (

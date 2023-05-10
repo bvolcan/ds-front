@@ -16,7 +16,6 @@ const ProfessorClasses = () => {
 		const getClassesData = async () => {
 			try {
 				const { data } = await professorsClassesRequest()
-				// console.log(data)
 				setClassesData(data)
 			} catch (error) {
 				console.log(error)
@@ -34,7 +33,7 @@ const ProfessorClasses = () => {
 		setIsCoordinator(role === 'coordinatorClasses')
 		setActualRole(role)
 	}
-	console.log(componenteAtual)
+
 	return (
 		<div className='container-class'>
 			<Header />

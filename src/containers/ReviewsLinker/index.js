@@ -43,7 +43,6 @@ const ReviewerSelector = ({ id, professorsList, linkedProfessors }) => {
 		const {
 			target: { value }
 		} = event
-		console.log(value)
 		setSelectedReviewers(value)
 	}
 

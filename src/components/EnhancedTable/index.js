@@ -168,9 +168,6 @@ const EnhancedTable = (data) => {
 		getTableData()
 	}, [])
 
-	console.log(data)
-	console.log(rows)
-
 	React.useEffect(() => {
 		let rowsOnMount = stableSort(
 			rows,

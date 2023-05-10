@@ -16,18 +16,13 @@ const ViewClass = () => {
 					role === 'revisor'
 						? await reviewerClassRequest(localStorage.getItem('classId'))
 						: await advisorClassRequest(localStorage.getItem('classId'))
-				console.log(data)
 				setClassesData(data)
 			} catch (error) {
 				console.log(error)
 			}
 		}
-		console.log(role)
 		getClassesData()
 	}, [])
-
-	console.log(classesData)
-	console.log('oi')
 
 	return (
 		<div className='container'>

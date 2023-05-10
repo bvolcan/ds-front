@@ -23,7 +23,6 @@ const ReviewSubmission = () => {
 		localStorage.getItem('currentReviewId')
 		try {
 			submitReview(formData)
-			console.log(formData)
 		} catch (error) {
 			console.log(error)
 		} finally {
@@ -45,8 +44,6 @@ const ReviewSubmission = () => {
 				localStorage.getItem('reviewId'),
 				reviewData
 			)
-			console.log(data)
-			console.log('data do volcan acima')
 			if (data !== 1) throw new Error('Erro ao enviar revisão')
 		} catch (error) {
 			console.log(error)

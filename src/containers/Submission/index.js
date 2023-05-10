@@ -26,7 +26,6 @@ const Submission = () => {
 		const getProfessorsData = async () => {
 			try {
 				const { data } = await professorsRequest()
-				console.log(data)
 				setProfessorsData(data)
 			} catch (error) {
 				console.log(error)
@@ -59,7 +58,6 @@ const Submission = () => {
 	const submitProposal = async (proposalData) => {
 		try {
 			const { data } = await proposalSubmission(proposalData)
-			console.log(data)
 		} catch (error) {
 			console.log(error)
 		} finally {
