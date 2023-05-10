@@ -1,0 +1,62 @@
+.edit-class-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.edit-class-container h2 {
+	font-size: 2.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.edit-class-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.edit-class-form-inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 75%;
+}
+
+.edit-class-form-inputs .create-input {
+	width: 100%;
+}
+
+.edit-class-form-inputs .create-input .MuiFormControl-root {
+	width: 100%;
+}
+
+.edit-class-form-inputs .conjunto-datas {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.edit-class-form-inputs .conjunto {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin-right: 0.5rem;
+}
+
+.edit-class-form-inputs .conjunto-alunos {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%;
+}
+
+.edit-class-form-inputs .conjunto-alunos .MuiFormControl-root {
+	width: 100%;
+}

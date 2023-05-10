@@ -29,7 +29,7 @@ const ClassesContainer = ({ turma, isCoordinator, role }) => {
 							onClick={() => {
 								localStorage.setItem('className', turma.name)
 								localStorage.setItem('classId', turma.id)
-								history.push('/professor/coordenacao/editarturma')
+								history.push('/professor/coordenacao/turma/editar')
 							}}
 						>
 							Editar

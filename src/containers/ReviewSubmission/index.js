@@ -56,7 +56,7 @@ const ReviewSubmission = () => {
 			<div className='review-submission-container'>
 				<div className='review-submission-titles'>
 					<h3>Revisão de proposta</h3>
-					<h4>Proposta: Título proposta</h4>
+					<h4>Proposta: {localStorage.getItem('proposalTitle')}</h4>
 				</div>
 				<form
 					className='review-submission-form'

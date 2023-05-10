@@ -9,6 +9,7 @@ import ViewRevision from './containers/ViewRevision'
 import ReviewSubmission from './containers/ReviewSubmission'
 import ReviewsLinker from './containers/ReviewsLinker'
 import ViewClass from './containers/ViewClass'
+import EditClass from './containers/EditClass'
 
 const Routes = () => {
 	return (
@@ -28,6 +29,10 @@ const Routes = () => {
 				<Route
 					component={ReviewSubmission}
 					path='/professor/revisor/revisarproposta'
+				/>
+				<Route
+					component={EditClass}
+					path='/professor/coordenacao/turma/:modo'
 				/>
 			</Switch>
 		</BrowserRouter>

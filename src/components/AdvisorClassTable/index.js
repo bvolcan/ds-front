@@ -182,6 +182,10 @@ const AdvisorClassTable = ({ data, role }) => {
 															to='/professor/revisor/revisarproposta'
 															onClick={() => {
 																localStorage.setItem('reviewId', row.reviewId)
+																localStorage.setItem(
+																	'proposalTitle',
+																	row.titulo
+																)
 															}}
 														>
 															Revisar
