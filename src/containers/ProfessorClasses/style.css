@@ -35,7 +35,7 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	justify-content: start;
+	justify-content: flex-start;
 	width: 100%;
 	background: #f3f4f6ff;
 }
@@ -50,8 +50,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	/* height: 100%; */
-	align-items: start;
+	align-items: flex-start;
 	justify-content: center;
 }
 
@@ -62,7 +61,7 @@
 .container-class .cards.vazio {
 	display: flex;
 	justify-content: center;
-	align-items: start;
+	align-items: flex-start;
 }
 
 .container-class .cards.vazio h3 {
