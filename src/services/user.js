@@ -21,3 +21,9 @@ export const reviewerClassRequest = (classId) =>
 
 export const advisorClassRequest = (classId) =>
 	fetchClient.get(`professors/classes/${classId}/proposals/advises`)
+
+export const createClass = (classInfo) =>
+	fetchClient.post(`/classes`, classInfo)
+
+export const editClass = (classInfo, classId) =>
+	fetchClient.put(`/classes`, { ...classInfo, classId })

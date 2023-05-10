@@ -5,12 +5,14 @@ import { Dashboard, Folder, Groups, Create } from '@mui/icons-material'
 import { Header } from '../../components'
 import { professorsClassesRequest } from '../../services'
 import ClassesContainer from './ClassesContainer'
+import { useHistory } from 'react-router-dom'
 
 const ProfessorClasses = () => {
 	const [classesData, setClassesData] = useState(null)
 	const [componenteAtual, setComponenteAtual] = useState([])
 	const [isCoordinator, setIsCoordinator] = useState(false)
 	const [actualRole, setActualRole] = useState('advisorClasses')
+	const history = useHistory()
 
 	useEffect(() => {
 		const getClassesData = async () => {
@@ -88,6 +90,9 @@ const ProfessorClasses = () => {
 						}}
 						type='submit'
 						startIcon={<Create />}
+						onClick={() => {
+							history.push('professor/coordenacao/turma/criar')
+						}}
 					>
 						Criar Turma
 					</Button>
