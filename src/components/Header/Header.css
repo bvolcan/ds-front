@@ -14,3 +14,37 @@ header img {
 header .profile-pic {
 	margin: 2.25rem;
 }
+
+header .MuiButton-root {
+	background: none;
+	width: fit-content;
+	border-radius: 1rem;
+}
+
+header .MuiButton-root:hover {
+	background: none;
+}
+
+header .MuiSvgIcon-root {
+	width: 50px;
+	height: 50px;
+	transition: 0.2s;
+}
+
+header .MuiSvgIcon-root:hover {
+	color: rgb(80, 80, 80);
+	cursor: pointer;
+}
+
+.MuiPopover-root > * .popover-content {
+	display: flex;
+	flex-direction: row;
+	padding: 0.2rem;
+	background: white;
+	.MuiButton-root {
+		color: black;
+	}
+	.MuiSvgIcon-root {
+		margin-right: 0.15rem;
+	}
+}

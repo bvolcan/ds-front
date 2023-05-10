@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react'
 import { Header, RevisionContainer } from '../../components'
 import './style.css'
 import { reviewsRequest } from '../../services/user'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 const ViewRevision = () => {
 	const queryParams = new URLSearchParams(window.location.search)
 	const proposalId = queryParams.get('proposalId')
-
+	const history = useHistory()
 	const [reviewsData, setReviewsData] = useState(null)
 
 	useEffect(() => {
@@ -51,9 +52,16 @@ const ViewRevision = () => {
 				)}
 
 				<div className='back-button'>
-					<Link variant='outlined' to='/aluno' exact>
+					<Button
+						variant='outlined'
+						onClick={() => {
+							localStorage.getItem('isProfessor') === 'true'
+								? history.push('/professor/revisor')
+								: history.push('/aluno')
+						}}
+					>
 						Voltar
-					</Link>
+					</Button>
 				</div>
 			</div>
 		)

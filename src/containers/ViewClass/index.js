@@ -34,7 +34,11 @@ const ViewClass = () => {
 			<div className='table'>
 				<div className='table-header'>
 					<div className='table-header-text'>
-						<IconButton onClick={() => history.push('/professor')}>
+						<IconButton
+							onClick={() => {
+								history.push('/professor')
+							}}
+						>
 							<ArrowBack />
 						</IconButton>
 						<h3>
@@ -44,7 +48,7 @@ const ViewClass = () => {
 					</div>
 				</div>
 				<div className='submissions-table'>
-					{classesData && <AdvisorClassTable data={classesData} />}
+					{classesData && <AdvisorClassTable data={classesData} role={role} />}
 				</div>
 			</div>
 		</div>

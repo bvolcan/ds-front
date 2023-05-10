@@ -24,7 +24,40 @@ function createData(data) {
 	return { titulo, autor, dataenvio, status, id, link, reviewId }
 }
 
-const headCells = [
+const advisorHeadCells = [
+	{
+		id: 'titulo',
+		numeric: false,
+		disablePadding: false,
+		label: 'Título'
+	},
+	{
+		id: 'autor',
+		numeric: false,
+		disablePadding: false,
+		label: 'Autor'
+	},
+	{
+		id: 'dataenvio',
+		numeric: false,
+		disablePadding: false,
+		label: 'Data de envio'
+	},
+	{
+		id: 'status',
+		numeric: false,
+		disablePadding: false,
+		label: 'Status'
+	},
+	{
+		id: 'proposta',
+		numeric: false,
+		disablePadding: false,
+		label: 'Proposta'
+	}
+]
+
+const reviewerHeadCells = [
 	{
 		id: 'titulo',
 		numeric: false,
@@ -63,25 +96,36 @@ const headCells = [
 	}
 ]
 
-function EnhancedTableHead(props) {
+function EnhancedTableHead({ role }) {
+	console.log(role)
 	return (
 		<TableHead>
 			<TableRow>
-				{headCells.map((headCell) => (
-					<TableCell
-						key={headCell.id}
-						align={headCell.numeric ? 'right' : 'left'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
-					>
-						{headCell.label}
-					</TableCell>
-				))}
+				{role === 'revisor'
+					? reviewerHeadCells.map((headCell) => (
+							<TableCell
+								key={headCell.id}
+								align={headCell.numeric ? 'right' : 'left'}
+								padding={headCell.disablePadding ? 'none' : 'normal'}
+							>
+								{headCell.label}
+							</TableCell>
+					  ))
+					: advisorHeadCells.map((headCell) => (
+							<TableCell
+								key={headCell.id}
+								align={headCell.numeric ? 'right' : 'left'}
+								padding={headCell.disablePadding ? 'none' : 'normal'}
+							>
+								{headCell.label}
+							</TableCell>
+					  ))}
 			</TableRow>
 		</TableHead>
 	)
 }
 
-const AdvisorClassTable = ({ data }) => {
+const AdvisorClassTable = ({ data, role }) => {
 	const [rows, setRows] = React.useState([])
 	useEffect(() => {
 		const getTableData = async () => {
@@ -105,7 +149,7 @@ const AdvisorClassTable = ({ data }) => {
 						aria-labelledby='tableTitle'
 						size={'medium'}
 					>
-						<EnhancedTableHead rowCount={rows.length} />
+						<EnhancedTableHead role={role} />
 						<TableBody>
 							{rows.length > 0 ? (
 								rows?.map((row, index) => {
@@ -131,22 +175,24 @@ const AdvisorClassTable = ({ data }) => {
 													PDF
 												</a>
 											</TableCell>
-											<TableCell align='left'>
-												{row.status === 'Pendente' ? (
-													<Link
-														to='/professor/revisor/revisarproposta'
-														onClick={() => {
-															localStorage.setItem('reviewId', row.reviewId)
-														}}
-													>
-														Revisar
-													</Link>
-												) : (
-													<Link to={`/verrevisao/?proposalId=${row.id}`}>
-														Ver
-													</Link>
-												)}
-											</TableCell>
+											{role === 'revisor' ? (
+												<TableCell align='left'>
+													{row.status === 'Pendente' ? (
+														<Link
+															to='/professor/revisor/revisarproposta'
+															onClick={() => {
+																localStorage.setItem('reviewId', row.reviewId)
+															}}
+														>
+															Revisar
+														</Link>
+													) : (
+														<Link to={`/verrevisao/?proposalId=${row.id}`}>
+															Ver
+														</Link>
+													)}
+												</TableCell>
+											) : null}
 										</TableRow>
 									)
 								})

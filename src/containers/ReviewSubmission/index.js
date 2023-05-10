@@ -64,7 +64,7 @@ const ReviewSubmission = () => {
 				>
 					<div className='review-submission-form-inputs'>
 						<FormControl>
-							<FormLabel>Apresentação e consistência.</FormLabel>
+							<FormLabel>Apresentação e consistência</FormLabel>
 							<RadioGroup name='presentation' onChange={handleFormChange}>
 								<FormControlLabel
 									value='4 - Excelente'
@@ -89,7 +89,7 @@ const ReviewSubmission = () => {
 							</RadioGroup>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Relevância e contribuição.</FormLabel>
+							<FormLabel>Relevância e contribuição</FormLabel>
 							<RadioGroup name='relevance' onChange={handleFormChange}>
 								<FormControlLabel
 									value='4 - Excelente'
@@ -114,7 +114,7 @@ const ReviewSubmission = () => {
 							</RadioGroup>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Metodologia.</FormLabel>
+							<FormLabel>Metodologia</FormLabel>
 							<RadioGroup name='methodology' onChange={handleFormChange}>
 								<FormControlLabel
 									value='4 - Excelente'
@@ -139,7 +139,7 @@ const ReviewSubmission = () => {
 							</RadioGroup>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Adequação ao curso.</FormLabel>
+							<FormLabel>Adequação ao curso</FormLabel>
 							<RadioGroup
 								name='wasAdequate'
 								onChange={(e) => {
@@ -162,7 +162,7 @@ const ReviewSubmission = () => {
 							</RadioGroup>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Plano de trabalho a ser desenvolvido.</FormLabel>
+							<FormLabel>Plano de trabalho a ser desenvolvido</FormLabel>
 							<RadioGroup name='workPlan' onChange={handleFormChange}>
 								<FormControlLabel
 									value='3 - Muito bem especificado e exequível'
@@ -182,7 +182,7 @@ const ReviewSubmission = () => {
 							</RadioGroup>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Avaliação geral.</FormLabel>
+							<FormLabel>Avaliação geral</FormLabel>
 							<RadioGroup
 								name='wasApproved'
 								onChange={(e) => {
@@ -205,7 +205,7 @@ const ReviewSubmission = () => {
 							</RadioGroup>
 						</FormControl>
 						<div>
-							<span>Resumo da proposta.</span>
+							<span>Resumo da proposta</span>
 							<TextField
 								id='summary'
 								name='summary'
@@ -217,7 +217,7 @@ const ReviewSubmission = () => {
 							/>
 						</div>
 						<div>
-							<span>Pontos fortes da proposta.</span>
+							<span>Pontos fortes da proposta</span>
 							<TextField
 								id='strengths'
 								name='strengths'
@@ -241,7 +241,7 @@ const ReviewSubmission = () => {
 							/>
 						</div>
 						<div>
-							<span>Detalhamento da avaliação.</span>
+							<span>Detalhamento da avaliação</span>
 							<TextField
 								id='details'
 								name='details'
