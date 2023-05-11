@@ -17,6 +17,12 @@ const Routes = () => {
 			<Switch>
 				<Route component={Login} path='/' exact />
 				<Route
+					component={() => {
+						return <h1>ADMIN TESTE</h1>
+					}}
+					path='/admin'
+				/>
+				<Route
 					component={ReviewsLinker}
 					path='/professor/coordenacao/associarrevisores'
 				/>

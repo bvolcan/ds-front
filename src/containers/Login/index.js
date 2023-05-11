@@ -32,7 +32,9 @@ const Login = () => {
 		} catch (error) {
 			console.log('Login error')
 		} finally {
-			if (localStorage.getItem('isProfessor') === 'true') {
+			if (localStorage.getItem('isAdmin') === 'true') {
+				history.push('/admin')
+			} else if (localStorage.getItem('isProfessor') === 'true') {
 				history.push('/professor')
 			} else {
 				history.push('/aluno')
