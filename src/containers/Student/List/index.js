@@ -23,7 +23,7 @@ const StudentList = () => {
 		}
 		getStudentData()
 	}, [])
-
+	console.log(studentData)
 	return (
 		studentData && (
 			<div className='container'>
@@ -47,7 +47,10 @@ const StudentList = () => {
 								onClick={() => {
 									history.push('/proposta/submissao')
 								}}
-								disabled={studentData.activeClass.length < 1}
+								disabled={
+									studentData.activeClass.length < 1 ||
+									studentData.proposals.length >= 2
+								}
 							>
 								Nova Submissão
 							</Button>

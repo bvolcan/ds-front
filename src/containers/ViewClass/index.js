@@ -26,7 +26,7 @@ const ViewClass = () => {
 			}
 		}
 		getClassesData()
-	}, [role])
+	}, [classesData])
 
 	return (
 		<div className='container'>

@@ -24,11 +24,11 @@ const ProfessorClasses = () => {
 			}
 		}
 		getClassesData()
-	}, [])
+	}, [classesData])
 
 	useEffect(() => {
 		if (classesData) handleRolesClick('advisorClasses')
-	}, [classesData])
+	}, [])
 
 	const handleRolesClick = (role) => {
 		setComponenteAtual(classesData[role])
