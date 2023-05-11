@@ -40,7 +40,7 @@ const rows = [
   createData('Leandro', 'leandro@inf.ufpel.edu.br')
 ];
 
-export default function TableAdmin() {
+export default function TableAdmin({data}) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 480 }} aria-label="customized table">
@@ -51,7 +51,7 @@ export default function TableAdmin() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data?.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
                 {row.name}

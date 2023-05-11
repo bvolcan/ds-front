@@ -5,10 +5,40 @@ import TableAdmin from '../../components/TableAdmin/TableAdmin'
 import { Header } from '../../components'
 import AdminPopUpAluno from '../../components/AdminPopUp/AdminPopUpAluno'
 import AdminPopUpProfessor from '../../components/AdminPopUp/AdminPopUpProfessor'
+import { professorsRequest, studentListRequest } from '../../services'
 
 
 const Admin = () => {
-	return (
+
+    const [professorData, setProfessorData] = useState(null)
+
+	useEffect(() => {
+		const getProfessorData = async () => {
+			try {
+				const { data } = await professorsRequest()
+				setProfessorData(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		getProfessorData()
+	}, [professorData])
+
+    const [studentData, setStudentData] = useState(null)
+
+	useEffect(() => {
+		const getStudentData = async () => {
+			try {
+				const { data } = await studentListRequest()
+				setStudentData(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		getStudentData()
+	}, [studentData])
+
+	return (professorData &&(
 		<div className="admin-container-class">
 
         <Header />
@@ -20,7 +50,9 @@ const Admin = () => {
             <div className="conteudos">
                 <h1>Alunos</h1> 
                 <div className="tabela">
-                    <TableAdmin />
+                    <TableAdmin 
+                        data = {studentData}
+                    />
                 </div>
                 
 
@@ -33,7 +65,9 @@ const Admin = () => {
 
                 <h1>Professores</h1>
                 <div className="tabela">
-                    <TableAdmin />
+                    <TableAdmin 
+                        data = {professorData}
+                    />
                 </div>
                 
 
@@ -43,7 +77,7 @@ const Admin = () => {
             </div>
         </div>
     </div>
-	)
+	))
 }
 
 export default Admin
