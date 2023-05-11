@@ -50,6 +50,7 @@ const Header = () => {
 					}}
 				>
 					<div className='popover-content'>
+						<h3 className='user-name'>{localStorage.getItem('userName')}</h3>
 						<Button
 							onClick={() => {
 								localStorage.clear()

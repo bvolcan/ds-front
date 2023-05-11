@@ -9,6 +9,7 @@ import ViewRevision from './containers/ViewRevision'
 import ReviewSubmission from './containers/ReviewSubmission'
 import ReviewsLinker from './containers/ReviewsLinker'
 import ViewClass from './containers/ViewClass'
+import Admin from './containers/Admin'
 import EditClass from './containers/EditClass'
 
 const Routes = () => {
@@ -16,12 +17,6 @@ const Routes = () => {
 		<BrowserRouter>
 			<Switch>
 				<Route component={Login} path='/' exact />
-				<Route
-					component={() => {
-						return <h1>ADMIN TESTE</h1>
-					}}
-					path='/admin'
-				/>
 				<Route
 					component={ReviewsLinker}
 					path='/professor/coordenacao/associarrevisores'
@@ -32,6 +27,7 @@ const Routes = () => {
 				<Route component={ProfessorClasses} path='/professor' exact />
 				<Route component={ViewClass} path='/professor/:role' exact />
 				<Route component={Submission} path='/proposta/submissao' />
+				<Route component={Admin} path='/admin' />
 				<Route
 					component={ReviewSubmission}
 					path='/professor/revisor/revisarproposta'

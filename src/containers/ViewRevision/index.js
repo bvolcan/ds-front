@@ -23,6 +23,7 @@ const ViewRevision = () => {
 		}
 		getReviewsData()
 	}, [])
+	console.log(reviewsData)
 
 	return (
 		reviewsData && (

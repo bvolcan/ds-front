@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
 	const login = async (email, password) => {
 		try {
 			const { data } = await loginRequest(email, password)
+			localStorage.setItem('userName', data.user.name)
 			setUserData(data)
 			setIsLogged(true)
 			localStorage.setItem('isProfessor', false)
